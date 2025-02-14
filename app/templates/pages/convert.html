@@ -1,0 +1,134 @@
+{# templates/pages/convert.html #}
+{% extends "base.html" %}
+
+{% block title %}{{ meta_tags.title }}{% endblock %}
+{% block meta_description %}{{ meta_tags.description }}{% endblock %}
+
+{% block extra_css %}
+<link href="{{ url_for('static', filename='css/quick-converter.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="row" data-category="{{ category }}" data-from-unit="{{ from_unit }}" data-to-unit="{{ to_unit }}">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('converter.category', category=category) }}">{{
+                        category|title }}</a></li>
+                <li class="breadcrumb-item active">{{ unit_info.from.name }} to {{ unit_info.to.name }}</li>
+            </ol>
+        </nav>
+
+        <div class="quick-converter card mb-5">
+            <div class="card-body">
+                <h1 class="h4 mb-4 text-center">Convert {{ unit_info.from.name }} to {{ unit_info.to.name }}</h1>
+                <div class="converter-form">
+                    <div class="row g-3">
+                        <!-- Input section -->
+                        <div class="col-12 col-md-5">
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="quickFromValue" placeholder="Enter value"
+                                    step="any" value="{{ request.args.get('value', '') }}">
+                                <span class="input-group-text">{{ unit_info.from.symbol }}</span>
+                            </div>
+                        </div>
+
+                        <!-- Swap button -->
+                        <div class="col-12 col-md-2 d-flex align-items-center justify-content-center">
+                            <button class="btn btn-outline-secondary" id="quickSwapBtn" title="Swap units">
+                                <i class="bi bi-arrow-left-right"></i>
+                                <span>Swap</span>
+                            </button>
+                        </div>
+
+                        <!-- Output section -->
+                        <div class="col-12 col-md-5">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="quickToValue" readonly placeholder="Result">
+                                <span class="input-group-text">{{ unit_info.to.symbol }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="d-flex justify-content-center gap-2 mt-3">
+                        <button class="btn btn-outline-primary btn-sm" id="quickCopyBtn" disabled>
+                            <i class="bi bi-clipboard"></i> Copy
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" id="quickShareBtn" disabled>
+                            <i class="bi bi-share"></i> Share
+                        </button>
+                    </div>
+
+                    <!-- Error message -->
+                    <div id="quickConverterError" class="alert alert-danger mt-3" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        {% if formula %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="h5 mb-0">Conversion Formula</h2>
+            </div>
+            <div class="card-body">
+                <p class="mb-0 font-monospace">{{ formula }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Common conversions table -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="h5 mb-0">Common Values</h2>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>{{ unit_info.from.name }}</th>
+                                <th>{{ unit_info.to.name }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for value in common_values %}
+                            <tr>
+                                <td>{{ value.from }}</td>
+                                <td>{{ value.to }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {% if related_conversions %}
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h5 mb-0">Related Conversions</h2>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    {% for conv in related_conversions %}
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <a href="{{ conv.url }}" class="card h-100 text-decoration-none">
+                            <div class="card-body">
+                                <h3 class="h6 card-title mb-0">{{ conv.title }}</h3>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/quick-converter.js') }}"></script>
+{% endblock %}

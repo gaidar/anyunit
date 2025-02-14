@@ -1,0 +1,69 @@
+/* static/css/main.css */
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.category-card {
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+}
+
+.category-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.converter-widget {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    background-color: #f8f9fa;
+}
+
+/* Accessibility improvements */
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+@media (max-width: 768px) {
+    .converter-widget {
+        padding: 1rem;
+    }
+}
+
+.error-page {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.error-code {
+    font-weight: 700;
+    color: #dee2e6;
+}
+
+.error-page .suggestions {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.error-page .btn {
+    min-width: 200px;
+}
+
+@media (max-width: 768px) {
+    .error-code {
+        font-size: 4rem;
+    }
+
+    .error-page .suggestions {
+        padding: 1.5rem;
+    }
+}

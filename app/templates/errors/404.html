@@ -1,0 +1,20 @@
+{# templates/errors/404.html #}
+{% extends "base.html" %}
+
+{% block title %}Page Not Found - AnyUnit{% endblock %}
+
+{% block content %}
+<div class="error-page text-center py-5">
+    <div class="error-code display-1 text-muted mb-3">404</div>
+    <h1 class="mb-4">Page Not Found</h1>
+    <p class="lead mb-4">We couldn't find the page you're looking for.</p>
+    <div class="suggestions mb-4">
+        <p>You might want to:</p>
+        <ul class="list-unstyled">
+            <li><a href="{{ url_for('main.index') }}" class="btn btn-primary">Go to Homepage</a></li>
+            <li class="mt-2">Try searching for a different conversion</li>
+            <li class="mt-2">Check if the URL is correct</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

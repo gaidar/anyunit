@@ -1,0 +1,185 @@
+{
+    "categories": {
+        "length": {
+            "title": "Length",
+            "description": "Convert between different units of length and distance",
+            "icon": "📏",
+            "units": {
+                "m": {
+                    "name": "Meter",
+                    "symbol": "m",
+                    "factor": 1,
+                    "type": "SI",
+                    "popular": true
+                },
+                "km": {
+                    "name": "Kilometer",
+                    "symbol": "km",
+                    "factor": 1000,
+                    "type": "SI",
+                    "popular": true
+                },
+                "cm": {
+                    "name": "Centimeter",
+                    "symbol": "cm",
+                    "factor": 0.01,
+                    "type": "SI",
+                    "popular": true
+                },
+                "mm": {
+                    "name": "Millimeter",
+                    "symbol": "mm",
+                    "factor": 0.001,
+                    "type": "SI",
+                    "popular": false
+                },
+                "in": {
+                    "name": "Inch",
+                    "symbol": "in",
+                    "factor": 0.0254,
+                    "type": "imperial",
+                    "popular": true
+                },
+                "ft": {
+                    "name": "Foot",
+                    "symbol": "ft",
+                    "factor": 0.3048,
+                    "type": "imperial",
+                    "popular": true
+                },
+                "yd": {
+                    "name": "Yard",
+                    "symbol": "yd",
+                    "factor": 0.9144,
+                    "type": "imperial",
+                    "popular": false
+                },
+                "mi": {
+                    "name": "Mile",
+                    "symbol": "mi",
+                    "factor": 1609.344,
+                    "type": "imperial",
+                    "popular": true
+                }
+            },
+            "popular_conversions": [
+                {
+                    "from": "m",
+                    "to": "ft"
+                },
+                {
+                    "from": "km",
+                    "to": "mi"
+                },
+                {
+                    "from": "cm",
+                    "to": "in"
+                },
+                {
+                    "from": "m",
+                    "to": "yd"
+                }
+            ]
+        },
+        "weight": {
+            "title": "Weight",
+            "description": "Convert between different units of mass and weight",
+            "icon": "⚖️",
+            "units": {
+                "kg": {
+                    "name": "Kilogram",
+                    "symbol": "kg",
+                    "factor": 1,
+                    "type": "SI",
+                    "popular": true
+                },
+                "g": {
+                    "name": "Gram",
+                    "symbol": "g",
+                    "factor": 0.001,
+                    "type": "SI",
+                    "popular": true
+                },
+                "mg": {
+                    "name": "Milligram",
+                    "symbol": "mg",
+                    "factor": 0.000001,
+                    "type": "SI",
+                    "popular": false
+                },
+                "lb": {
+                    "name": "Pound",
+                    "symbol": "lb",
+                    "factor": 0.45359237,
+                    "type": "imperial",
+                    "popular": true
+                },
+                "oz": {
+                    "name": "Ounce",
+                    "symbol": "oz",
+                    "factor": 0.028349523125,
+                    "type": "imperial",
+                    "popular": true
+                }
+            },
+            "popular_conversions": [
+                {
+                    "from": "kg",
+                    "to": "lb"
+                },
+                {
+                    "from": "g",
+                    "to": "oz"
+                },
+                {
+                    "from": "lb",
+                    "to": "oz"
+                }
+            ]
+        },
+        "temperature": {
+            "title": "Temperature",
+            "description": "Convert between different temperature scales",
+            "icon": "🌡️",
+            "units": {
+                "c": {
+                    "name": "Celsius",
+                    "symbol": "°C",
+                    "type": "SI",
+                    "popular": true,
+                    "requires_formula": true
+                },
+                "f": {
+                    "name": "Fahrenheit",
+                    "symbol": "°F",
+                    "type": "imperial",
+                    "popular": true,
+                    "requires_formula": true
+                },
+                "k": {
+                    "name": "Kelvin",
+                    "symbol": "K",
+                    "type": "SI",
+                    "popular": false,
+                    "requires_formula": true
+                }
+            },
+            "popular_conversions": [
+                {
+                    "from": "c",
+                    "to": "f"
+                },
+                {
+                    "from": "f",
+                    "to": "c"
+                }
+            ],
+            "formulas": {
+                "c_to_f": "°F = (°C × 9/5) + 32",
+                "f_to_c": "°C = (°F - 32) × 5/9",
+                "c_to_k": "K = °C + 273.15",
+                "k_to_c": "°C = K - 273.15"
+            }
+        }
+    }
+}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}{{ meta_tags.title }}{% endblock %}
+{% block meta_description %}{{ meta_tags.description }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li class="breadcrumb-item active">{{ category_info.title }}</li>
+            </ol>
+        </nav>
+
+        <div class="category-header text-center mb-4">
+            <div class="category-icon mb-3">{{ category_info.icon }}</div>
+            <h1>{{ category_info.title }} Converter</h1>
+            <p class="lead">{{ category_info.description }}</p>
+        </div>
+
+        {% if conversion_tables %}
+        <section class="conversion-tables mt-5">
+            <h2>Common Conversion Tables</h2>
+            <div class="row g-4">
+                {% for table in conversion_tables %}
+                <div class="col-12 col-lg-6">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h3 class="card-title h5 mb-0">
+                                {{ table.title }}
+                            </h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-sm mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>{{ table.from_unit }}</th>
+                                        <th>{{ table.to_unit }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in table.table_values %} {# Changed from table.values to
+                                    table.table_values #}
+                                    <tr>
+                                        <td>{{ row.from }}</td>
+                                        <td>{{ row.to }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/category.js') }}"></script>
+{% endblock %}

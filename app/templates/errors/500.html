@@ -1,0 +1,20 @@
+{# templates/errors/500.html #}
+{% extends "base.html" %}
+
+{% block title %}Server Error - AnyUnit{% endblock %}
+
+{% block content %}
+<div class="error-page text-center py-5">
+    <div class="error-code display-1 text-muted mb-3">500</div>
+    <h1 class="mb-4">Internal Server Error</h1>
+    <p class="lead mb-4">Something went wrong on our end. We're working to fix it.</p>
+    <div class="suggestions mb-4">
+        <p>In the meantime, you can:</p>
+        <ul class="list-unstyled">
+            <li><a href="{{ url_for('main.index') }}" class="btn btn-primary">Go to Homepage</a></li>
+            <li class="mt-2">Try refreshing the page</li>
+            <li class="mt-2">Come back in a few minutes</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+/* static/css/quick-converter.css */
+.quick-converter {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.quick-converter .input-group {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.quick-converter .form-control,
+.quick-converter .form-select {
+    border: 1px solid #dee2e6;
+    padding: 0.75rem 1rem;
+}
+
+.quick-converter .form-control:focus,
+.quick-converter .form-select:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+#quickSwapBtn {
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s;
+    min-width: 120px;
+}
+
+#quickSwapBtn i {
+    font-size: 1.2em;
+}
+
+#quickSwapBtn:hover {
+    transform: scale(1.05);
+}
+
+.quick-converter .btn-outline-primary {
+    min-width: 100px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    #quickSwapBtn {
+        width: 100%;
+        margin: 1rem 0;
+        justify-content: center;
+    }
+}

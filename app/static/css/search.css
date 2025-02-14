@@ -1,0 +1,79 @@
+/* static/css/search.css */
+.search-container {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.search-container .form-control {
+    padding-right: 40px;
+    border-radius: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-container .search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+}
+
+.search-results-container {
+    margin-top: 2rem;
+}
+
+.search-section {
+    margin-bottom: 3rem;
+}
+
+.search-section h3 {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.search-results-container .card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.search-results-container .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.no-results {
+    padding: 3rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.no-results h3 {
+    color: #343a40;
+    margin-bottom: 1rem;
+}
+
+.reset-search {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.reset-search:hover {
+    color: #0056b3;
+}
+
+.search-highlight {
+    background-color: rgba(255, 255, 0, 0.3);
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+    .search-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .no-results {
+        padding: 2rem;
+    }
+}
