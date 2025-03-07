@@ -1,0 +1,269 @@
+{# templates/pages/markdown/index.html #}
+{% extends "base.html" %}
+
+{% block title %}Markdown to HTML Converter - AnyUnit{% endblock %}
+{% block meta_description %}Convert Markdown to HTML easily. Preview, edit, and download as HTML or DOCX.{% endblock %}
+
+{% block extra_css %}
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" rel="stylesheet">
+<style>
+    .markdown-container {
+        display: flex;
+        flex-direction: column;
+        height: 70vh;
+        gap: 1rem;
+    }
+
+    .editor-container {
+        display: flex;
+        flex: 1;
+        gap: 1rem;
+        min-height: 400px;
+    }
+
+    .editor-pane,
+    .preview-pane {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .editor-header,
+    .preview-header {
+        background-color: #f5f5f5;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+    }
+
+    #markdown-editor {
+        flex: 1;
+        padding: 1rem;
+        border: none;
+        resize: none;
+        font-family: monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    #preview-content {
+        flex: 1;
+        padding: 1rem;
+        overflow: auto;
+    }
+
+    .actions-container {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    /* Preview styling */
+    #preview-content h1,
+    #preview-content h2,
+    #preview-content h3 {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    #preview-content pre {
+        background-color: #f5f5f5;
+        padding: 0.5rem;
+        border-radius: 4px;
+        overflow-x: auto;
+    }
+
+    #preview-content code {
+        background-color: #f5f5f5;
+        padding: 0.2rem 0.4rem;
+        border-radius: 3px;
+    }
+
+    #preview-content blockquote {
+        border-left: 4px solid #ddd;
+        padding-left: 1rem;
+        margin-left: 0;
+        color: #666;
+    }
+
+    #preview-content table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    #preview-content th,
+    #preview-content td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #preview-content th {
+        background-color: #f2f2f2;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li class="breadcrumb-item active">Markdown Converter</li>
+            </ol>
+        </nav>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h1 class="card-title h3 mb-4">Markdown to HTML Converter</h1>
+                <p class="lead">Enter Markdown in the editor below and see the HTML preview in real-time.</p>
+
+                <div class="markdown-container">
+                    <div class="editor-container">
+                        <div class="editor-pane">
+                            <div class="editor-header">Markdown</div>
+                            <textarea id="markdown-editor" placeholder="Enter your Markdown here..." autofocus>
+# Welcome to Markdown Converter
+
+This is a **markdown** converter that lets you:
+
+- Write Markdown
+- Preview HTML
+- Download as HTML or DOCX
+
+## Example Features
+
+### Code blocks
+
+```python
+def hello_world():
+    print("Hello, World!")
+```
+
+### Tables
+
+| Name | Value |
+|------|-------|
+| John | 100   |
+| Jane | 200   |
+
+### Blockquotes
+
+> This is a blockquote.
+> It can span multiple lines.
+</textarea>
+                        </div>
+                        <div class="preview-pane">
+                            <div class="preview-header">Preview</div>
+                            <div id="preview-content"></div>
+                        </div>
+                    </div>
+
+                    <div class="actions-container">
+                        <form id="html-download-form" action="{{ url_for('markdown.download_html') }}" method="post"
+                            class="d-inline">
+                            <input type="hidden" name="markdown" id="markdown-html-input">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-download"></i> Download HTML
+                            </button>
+                        </form>
+
+                        <form id="docx-download-form" action="{{ url_for('markdown.download_docx') }}" method="post"
+                            class="d-inline">
+                            <input type="hidden" name="markdown" id="markdown-docx-input">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-file-earmark-word"></i> Download DOCX
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h5 mb-0">About Markdown</h2>
+            </div>
+            <div class="card-body">
+                <p>Markdown is a lightweight markup language that you can use to add formatting elements to plaintext
+                    text documents. Created by John Gruber in 2004, Markdown is now one of the world's most popular
+                    markup languages.</p>
+
+                <h3 class="h6 mt-3">Common Syntax:</h3>
+                <ul>
+                    <li><strong># Heading 1</strong> - Creates a top-level heading</li>
+                    <li><strong>**Bold Text**</strong> - Makes text bold</li>
+                    <li><strong>*Italic Text*</strong> - Makes text italic</li>
+                    <li><strong>[Link Text](URL)</strong> - Creates a link</li>
+                    <li><strong>![Alt Text](Image URL)</strong> - Inserts an image</li>
+                    <li><strong>- Item</strong> - Creates a list item</li>
+                    <li><strong>1. Item</strong> - Creates a numbered list item</li>
+                    <li><strong>```code```</strong> - Creates a code block</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const markdownEditor = document.getElementById('markdown-editor');
+        const previewContent = document.getElementById('preview-content');
+        const htmlForm = document.getElementById('html-download-form');
+        const docxForm = document.getElementById('docx-download-form');
+        const markdownHtmlInput = document.getElementById('markdown-html-input');
+        const markdownDocxInput = document.getElementById('markdown-docx-input');
+
+        // Initial render
+        updatePreview();
+
+        // Update preview when user types
+        markdownEditor.addEventListener('input', updatePreview);
+
+        // Update hidden form fields when submitting
+        htmlForm.addEventListener('submit', function (e) {
+            markdownHtmlInput.value = markdownEditor.value;
+        });
+
+        docxForm.addEventListener('submit', function (e) {
+            markdownDocxInput.value = markdownEditor.value;
+        });
+
+        function updatePreview() {
+            const markdown = markdownEditor.value;
+
+            // Call API to convert markdown to HTML
+            fetch('{{ url_for("markdown.convert") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ markdown: markdown }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        previewContent.innerHTML = data.html;
+                        // Rehighlight code blocks
+                        if (window.Prism) {
+                            Prism.highlightAllUnder(previewContent);
+                        }
+                    } else {
+                        previewContent.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+                    }
+                })
+                .catch(error => {
+                    previewContent.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
+                });
+        }
+    });
+</script>
+{% endblock %}
