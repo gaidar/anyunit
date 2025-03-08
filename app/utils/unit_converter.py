@@ -262,6 +262,178 @@ class UnitManager:
         }
     ]
 
+    def get_speed_conversion_tables(self):
+        return [
+            {
+                "title": "Miles per Hour to Other Units",
+                "description": "Common conversions from miles per hour to other speed units",
+                "conversions": [
+                    {"from": "mph", "to": "kph", "ratio": "1 mph = 1.60934 km/h", "note": "Standard conversion used internationally"},
+                    {"from": "mph", "to": "mps", "ratio": "1 mph = 0.44704 m/s", "note": "Used in physics calculations"},
+                    {"from": "mph", "to": "fps", "ratio": "1 mph = 1.46667 ft/s", "note": "Common in engineering"},
+                    {"from": "mph", "to": "knot", "ratio": "1 mph = 0.868976 knots", "note": "Used in maritime and aviation"}
+                ]
+            },
+            {
+                "title": "Kilometers per Hour to Other Units",
+                "description": "Common conversions from kilometers per hour to other speed units",
+                "conversions": [
+                    {"from": "kph", "to": "mph", "ratio": "1 km/h = 0.621371 mph", "note": "Standard international conversion"},
+                    {"from": "kph", "to": "mps", "ratio": "1 km/h = 0.277778 m/s", "note": "Divide by 3.6 for quick calculation"},
+                    {"from": "kph", "to": "fps", "ratio": "1 km/h = 0.911344 ft/s", "note": "Used in engineering"},
+                    {"from": "kph", "to": "knot", "ratio": "1 km/h = 0.539957 knots", "note": "Used in maritime and aviation"}
+                ]
+            },
+            {
+                "title": "Meters per Second to Other Units",
+                "description": "Common conversions from meters per second to other speed units",
+                "conversions": [
+                    {"from": "mps", "to": "kph", "ratio": "1 m/s = 3.6 km/h", "note": "Standard metric conversion"},
+                    {"from": "mps", "to": "mph", "ratio": "1 m/s = 2.23694 mph", "note": "Used in international comparisons"},
+                    {"from": "mps", "to": "fps", "ratio": "1 m/s = 3.28084 ft/s", "note": "Used in engineering calculations"},
+                    {"from": "mps", "to": "knot", "ratio": "1 m/s = 1.94384 knots", "note": "Used in meteorology and navigation"}
+                ]
+            },
+            {
+                "title": "Knots to Other Units",
+                "description": "Common conversions from knots to other speed units",
+                "conversions": [
+                    {"from": "knot", "to": "mph", "ratio": "1 knot = 1.15078 mph", "note": "Used in aviation and maritime"},
+                    {"from": "knot", "to": "kph", "ratio": "1 knot = 1.852 km/h", "note": "International standard"},
+                    {"from": "knot", "to": "mps", "ratio": "1 knot = 0.514444 m/s", "note": "Used in scientific calculations"},
+                    {"from": "knot", "to": "fps", "ratio": "1 knot = 1.68781 ft/s", "note": "Used in engineering"}
+                ]
+            }
+        ]
+
+    def get_pressure_conversion_tables(self):
+        return [
+            {
+                "title": "Pascal to Other Units",
+                "description": "Common conversions from pascal to other pressure units",
+                "conversions": [
+                    {"from": "pa", "to": "kpa", "ratio": "1 Pa = 0.001 kPa", "note": "Basic metric conversion"},
+                    {"from": "pa", "to": "bar", "ratio": "1 Pa = 0.00001 bar", "note": "Common engineering conversion"},
+                    {"from": "pa", "to": "psi", "ratio": "1 Pa = 0.000145038 psi", "note": "Conversion to imperial unit"},
+                    {"from": "pa", "to": "atm", "ratio": "1 Pa = 0.00000986923 atm", "note": "Used in scientific calculations"}
+                ]
+            },
+            {
+                "title": "Bar to Other Units",
+                "description": "Common conversions from bar to other pressure units",
+                "conversions": [
+                    {"from": "bar", "to": "kpa", "ratio": "1 bar = 100 kPa", "note": "Common metric conversion"},
+                    {"from": "bar", "to": "psi", "ratio": "1 bar = 14.5038 psi", "note": "Important for international specifications"},
+                    {"from": "bar", "to": "atm", "ratio": "1 bar = 0.986923 atm", "note": "Approximately 1 atmosphere"},
+                    {"from": "bar", "to": "mmhg", "ratio": "1 bar = 750.062 mmHg", "note": "Used in weather and medical applications"}
+                ]
+            },
+            {
+                "title": "PSI to Other Units",
+                "description": "Common conversions from pounds per square inch to other pressure units",
+                "conversions": [
+                    {"from": "psi", "to": "kpa", "ratio": "1 psi = 6.89476 kPa", "note": "Standard metric conversion"},
+                    {"from": "psi", "to": "bar", "ratio": "1 psi = 0.0689476 bar", "note": "Used in industrial applications"},
+                    {"from": "psi", "to": "atm", "ratio": "1 psi = 0.068046 atm", "note": "Used in scientific calculations"},
+                    {"from": "psi", "to": "mmhg", "ratio": "1 psi = 51.7149 mmHg", "note": "Used in medical and meteorological contexts"}
+                ]
+            },
+            {
+                "title": "Atmosphere to Other Units",
+                "description": "Common conversions from atmosphere to other pressure units",
+                "conversions": [
+                    {"from": "atm", "to": "kpa", "ratio": "1 atm = 101.325 kPa", "note": "Standard atmospheric pressure at sea level"},
+                    {"from": "atm", "to": "bar", "ratio": "1 atm = 1.01325 bar", "note": "Slightly more than 1 bar"},
+                    {"from": "atm", "to": "psi", "ratio": "1 atm = 14.6959 psi", "note": "Used in engineering and science"},
+                    {"from": "atm", "to": "mmhg", "ratio": "1 atm = 760 mmHg", "note": "Traditional definition of atmosphere"}
+                ]
+            }
+        ]
+
+    def get_energy_conversion_tables(self):
+        return [
+            {
+                "title": "Joule to Other Units",
+                "description": "Common conversions from joules to other energy units",
+                "conversions": [
+                    {"from": "j", "to": "kj", "ratio": "1 J = 0.001 kJ", "note": "Basic metric conversion"},
+                    {"from": "j", "to": "cal", "ratio": "1 J = 0.239006 cal", "note": "Used in thermal calculations"},
+                    {"from": "j", "to": "wh", "ratio": "1 J = 0.000277778 Wh", "note": "Energy to electrical conversion"},
+                    {"from": "j", "to": "btu", "ratio": "1 J = 0.000947817 BTU", "note": "Conversion to imperial unit"}
+                ]
+            },
+            {
+                "title": "Kilocalorie to Other Units",
+                "description": "Common conversions from kilocalories to other energy units",
+                "conversions": [
+                    {"from": "kcal", "to": "kj", "ratio": "1 kcal = 4.184 kJ", "note": "Used in nutrition"},
+                    {"from": "kcal", "to": "j", "ratio": "1 kcal = 4184 J", "note": "Standard scientific conversion"},
+                    {"from": "kcal", "to": "wh", "ratio": "1 kcal = 1.16222 Wh", "note": "Used in energy consumption calculations"},
+                    {"from": "kcal", "to": "btu", "ratio": "1 kcal = 3.96567 BTU", "note": "Used in heating and cooling"}
+                ]
+            },
+            {
+                "title": "Kilowatt-hour to Other Units",
+                "description": "Common conversions from kilowatt-hours to other energy units",
+                "conversions": [
+                    {"from": "kwh", "to": "kj", "ratio": "1 kWh = 3,600 kJ", "note": "Basic electrical energy conversion"},
+                    {"from": "kwh", "to": "j", "ratio": "1 kWh = 3,600,000 J", "note": "Full conversion to base SI unit"},
+                    {"from": "kwh", "to": "kcal", "ratio": "1 kWh = 860.421 kcal", "note": "Used in heating calculations"},
+                    {"from": "kwh", "to": "btu", "ratio": "1 kWh = 3,412.14 BTU", "note": "Used in HVAC applications"}
+                ]
+            },
+            {
+                "title": "BTU to Other Units",
+                "description": "Common conversions from British Thermal Units to other energy units",
+                "conversions": [
+                    {"from": "btu", "to": "j", "ratio": "1 BTU = 1,055.06 J", "note": "Standard scientific conversion"},
+                    {"from": "btu", "to": "kj", "ratio": "1 BTU = 1.05506 kJ", "note": "Used in engineering"},
+                    {"from": "btu", "to": "kcal", "ratio": "1 BTU = 0.252164 kcal", "note": "Used in heating applications"},
+                    {"from": "btu", "to": "kwh", "ratio": "1 BTU = 0.000293071 kWh", "note": "Used in energy efficiency calculations"}
+                ]
+            }
+        ]
+
+    def get_power_conversion_tables(self):
+        return [
+            {
+                "title": "Watt to Other Units",
+                "description": "Common conversions from watts to other power units",
+                "conversions": [
+                    {"from": "w", "to": "kw", "ratio": "1 W = 0.001 kW", "note": "Basic metric conversion"},
+                    {"from": "w", "to": "hp", "ratio": "1 W = 0.00134102 hp", "note": "Conversion to mechanical power"},
+                    {"from": "w", "to": "btuh", "ratio": "1 W = 3.41214 BTU/h", "note": "Used in HVAC applications"}
+                ]
+            },
+            {
+                "title": "Kilowatt to Other Units",
+                "description": "Common conversions from kilowatts to other power units",
+                "conversions": [
+                    {"from": "kw", "to": "w", "ratio": "1 kW = 1,000 W", "note": "Basic metric conversion"},
+                    {"from": "kw", "to": "hp", "ratio": "1 kW = 1.34102 hp", "note": "Common conversion for engines and motors"},
+                    {"from": "kw", "to": "btuh", "ratio": "1 kW = 3,412.14 BTU/h", "note": "Used in heating and cooling"}
+                ]
+            },
+            {
+                "title": "Horsepower to Other Units",
+                "description": "Common conversions from horsepower to other power units",
+                "conversions": [
+                    {"from": "hp", "to": "w", "ratio": "1 hp = 745.7 W", "note": "Standard conversion"},
+                    {"from": "hp", "to": "kw", "ratio": "1 hp = 0.7457 kW", "note": "Used in automotive and industrial applications"},
+                    {"from": "hp", "to": "btuh", "ratio": "1 hp = 2,544.43 BTU/h", "note": "Used in engine specifications"}
+                ]
+            },
+            {
+                "title": "BTU/hour to Other Units",
+                "description": "Common conversions from BTU per hour to other power units",
+                "conversions": [
+                    {"from": "btuh", "to": "w", "ratio": "1 BTU/h = 0.293071 W", "note": "Used in heating and cooling"},
+                    {"from": "btuh", "to": "kw", "ratio": "1 BTU/h = 0.000293071 kW", "note": "Common HVAC conversion"},
+                    {"from": "btuh", "to": "hp", "ratio": "1 BTU/h = 0.000393015 hp", "note": "Used in power comparisons"}
+                ]
+            }
+        ]
+
     def get_detailed_conversion_tables(self, category_id):
         """Get detailed conversion tables for a specific category"""
         if category_id == 'length':
@@ -272,5 +444,13 @@ class UnitManager:
             return self.get_weight_conversion_tables()
         elif category_id == 'volume':
             return self.get_volume_conversion_tables()
+        elif category_id == 'speed':
+            return self.get_speed_conversion_tables()
+        elif category_id == 'pressure':
+            return self.get_pressure_conversion_tables()
+        elif category_id == 'energy':
+            return self.get_energy_conversion_tables()
+        elif category_id == 'power':
+            return self.get_power_conversion_tables()
         else:
             return []

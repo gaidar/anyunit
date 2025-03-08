@@ -283,6 +283,266 @@
                     "to": "l"
                 }
             ]
+        },
+        "speed": {
+            "title": "Speed",
+            "description": "Convert between different speed units like miles per hour, kilometers per hour, meters per second.",
+            "icon": "🚀",
+            "units": {
+                "mps": {
+                    "name": "Meters per second",
+                    "symbol": "m/s",
+                    "factor": 1,
+                    "popular": true
+                },
+                "kph": {
+                    "name": "Kilometers per hour",
+                    "symbol": "km/h",
+                    "factor": 0.2777778,
+                    "popular": true
+                },
+                "mph": {
+                    "name": "Miles per hour",
+                    "symbol": "mph",
+                    "factor": 0.44704,
+                    "popular": true
+                },
+                "fps": {
+                    "name": "Feet per second",
+                    "symbol": "ft/s",
+                    "factor": 0.3048,
+                    "popular": true
+                },
+                "knot": {
+                    "name": "Knot",
+                    "symbol": "kn",
+                    "factor": 0.5144444,
+                    "popular": true
+                }
+            },
+            "popular_conversions": [
+                {
+                    "from": "mph",
+                    "to": "kph"
+                },
+                {
+                    "from": "kph",
+                    "to": "mph"
+                },
+                {
+                    "from": "mps",
+                    "to": "kph"
+                },
+                {
+                    "from": "mps",
+                    "to": "mph"
+                },
+                {
+                    "from": "knot",
+                    "to": "mph"
+                }
+            ]
+        },
+        "pressure": {
+            "title": "Pressure",
+            "description": "Convert between different pressure units like pascal, bar, psi, atmosphere.",
+            "icon": "🔄",
+            "units": {
+                "pa": {
+                    "name": "Pascal",
+                    "symbol": "Pa",
+                    "factor": 1,
+                    "popular": true
+                },
+                "kpa": {
+                    "name": "Kilopascal",
+                    "symbol": "kPa",
+                    "factor": 1000,
+                    "popular": true
+                },
+                "bar": {
+                    "name": "Bar",
+                    "symbol": "bar",
+                    "factor": 100000,
+                    "popular": true
+                },
+                "psi": {
+                    "name": "Pounds per square inch",
+                    "symbol": "psi",
+                    "factor": 6894.76,
+                    "popular": true
+                },
+                "atm": {
+                    "name": "Atmosphere",
+                    "symbol": "atm",
+                    "factor": 101325,
+                    "popular": true
+                },
+                "mmhg": {
+                    "name": "Millimeters of mercury",
+                    "symbol": "mmHg",
+                    "factor": 133.322,
+                    "popular": true
+                }
+            },
+            "popular_conversions": [
+                {
+                    "from": "bar",
+                    "to": "psi"
+                },
+                {
+                    "from": "psi",
+                    "to": "bar"
+                },
+                {
+                    "from": "kpa",
+                    "to": "psi"
+                },
+                {
+                    "from": "atm",
+                    "to": "bar"
+                },
+                {
+                    "from": "mmhg",
+                    "to": "kpa"
+                }
+            ]
+        },
+        "energy": {
+            "title": "Energy",
+            "description": "Convert between different energy units like joule, calorie, kilowatt-hour, electronvolt.",
+            "icon": "⚡",
+            "units": {
+                "j": {
+                    "name": "Joule",
+                    "symbol": "J",
+                    "factor": 1,
+                    "popular": true
+                },
+                "kj": {
+                    "name": "Kilojoule",
+                    "symbol": "kJ",
+                    "factor": 1000,
+                    "popular": true
+                },
+                "cal": {
+                    "name": "Calorie",
+                    "symbol": "cal",
+                    "factor": 4.184,
+                    "popular": true
+                },
+                "kcal": {
+                    "name": "Kilocalorie",
+                    "symbol": "kcal",
+                    "factor": 4184,
+                    "popular": true
+                },
+                "wh": {
+                    "name": "Watt-hour",
+                    "symbol": "Wh",
+                    "factor": 3600,
+                    "popular": true
+                },
+                "kwh": {
+                    "name": "Kilowatt-hour",
+                    "symbol": "kWh",
+                    "factor": 3600000,
+                    "popular": true
+                },
+                "ev": {
+                    "name": "Electronvolt",
+                    "symbol": "eV",
+                    "factor": 1.602176634e-19,
+                    "popular": true
+                },
+                "btu": {
+                    "name": "British Thermal Unit",
+                    "symbol": "BTU",
+                    "factor": 1055.06,
+                    "popular": true
+                }
+            },
+            "popular_conversions": [
+                {
+                    "from": "j",
+                    "to": "cal"
+                },
+                {
+                    "from": "kj",
+                    "to": "kcal"
+                },
+                {
+                    "from": "kwh",
+                    "to": "kj"
+                },
+                {
+                    "from": "kwh",
+                    "to": "btu"
+                },
+                {
+                    "from": "cal",
+                    "to": "j"
+                }
+            ]
+        },
+        "power": {
+            "title": "Power",
+            "description": "Convert between different power units like watt, horsepower, kilowatt.",
+            "icon": "💪",
+            "units": {
+                "w": {
+                    "name": "Watt",
+                    "symbol": "W",
+                    "factor": 1,
+                    "popular": true
+                },
+                "kw": {
+                    "name": "Kilowatt",
+                    "symbol": "kW",
+                    "factor": 1000,
+                    "popular": true
+                },
+                "mw": {
+                    "name": "Megawatt",
+                    "symbol": "MW",
+                    "factor": 1000000,
+                    "popular": true
+                },
+                "hp": {
+                    "name": "Horsepower",
+                    "symbol": "hp",
+                    "factor": 745.7,
+                    "popular": true
+                },
+                "btuh": {
+                    "name": "BTU/hour",
+                    "symbol": "BTU/h",
+                    "factor": 0.2930711,
+                    "popular": true
+                }
+            },
+            "popular_conversions": [
+                {
+                    "from": "hp",
+                    "to": "kw"
+                },
+                {
+                    "from": "kw",
+                    "to": "hp"
+                },
+                {
+                    "from": "w",
+                    "to": "btuh"
+                },
+                {
+                    "from": "kw",
+                    "to": "w"
+                },
+                {
+                    "from": "mw",
+                    "to": "kw"
+                }
+            ]
         }
     }
 }
