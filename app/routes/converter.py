@@ -128,7 +128,7 @@ def category(category):
     
     # Get detailed conversion tables for special categories
     detailed_tables = []
-    if normalized_category in ['length', 'temperature', 'weight']:
+    if normalized_category in ['length', 'temperature', 'weight', 'volume']:
         detailed_tables = unit_manager.get_detailed_conversion_tables(normalized_category)
     
     meta_tags = generate_meta_tags(category=normalized_category)

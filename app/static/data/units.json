@@ -180,6 +180,109 @@
                 "c_to_k": "K = °C + 273.15",
                 "k_to_c": "°C = K - 273.15"
             }
+        },
+        "volume": {
+            "title": "Volume",
+            "description": "Convert between different volume units like liters, gallons, cubic meters, and more",
+            "icon": "📊",
+            "units": {
+                "l": {
+                    "name": "Liter",
+                    "symbol": "L",
+                    "factor": 1,
+                    "popular": true
+                },
+                "ml": {
+                    "name": "Milliliter",
+                    "symbol": "mL",
+                    "factor": 0.001,
+                    "popular": true
+                },
+                "gal": {
+                    "name": "Gallon (US)",
+                    "symbol": "gal",
+                    "factor": 3.78541,
+                    "popular": true
+                },
+                "qt": {
+                    "name": "Quart (US)",
+                    "symbol": "qt",
+                    "factor": 0.946353,
+                    "popular": true
+                },
+                "pt": {
+                    "name": "Pint (US)",
+                    "symbol": "pt",
+                    "factor": 0.473176,
+                    "popular": true
+                },
+                "cup": {
+                    "name": "Cup (US)",
+                    "symbol": "cup",
+                    "factor": 0.236588,
+                    "popular": true
+                },
+                "floz": {
+                    "name": "Fluid Ounce (US)",
+                    "symbol": "fl oz",
+                    "factor": 0.0295735,
+                    "popular": true
+                },
+                "tbsp": {
+                    "name": "Tablespoon (US)",
+                    "symbol": "tbsp",
+                    "factor": 0.0147868,
+                    "popular": true
+                },
+                "tsp": {
+                    "name": "Teaspoon (US)",
+                    "symbol": "tsp",
+                    "factor": 0.00492892,
+                    "popular": true
+                },
+                "cm3": {
+                    "name": "Cubic Centimeter",
+                    "symbol": "cm³",
+                    "factor": 0.001,
+                    "popular": false
+                },
+                "m3": {
+                    "name": "Cubic Meter",
+                    "symbol": "m³",
+                    "factor": 1000,
+                    "popular": false
+                },
+                "in3": {
+                    "name": "Cubic Inch",
+                    "symbol": "in³",
+                    "factor": 0.0163871,
+                    "popular": false
+                },
+                "ft3": {
+                    "name": "Cubic Foot",
+                    "symbol": "ft³",
+                    "factor": 28.3168,
+                    "popular": false
+                }
+            },
+            "popular_conversions": [
+                {
+                    "from": "l",
+                    "to": "gal"
+                },
+                {
+                    "from": "ml",
+                    "to": "floz"
+                },
+                {
+                    "from": "cup",
+                    "to": "ml"
+                },
+                {
+                    "from": "gal",
+                    "to": "l"
+                }
+            ]
         }
     }
 }
