@@ -1,0 +1,80 @@
+{# app/templates/pages/privacy_policy.html #}
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy - AnyUnit{% endblock %}
+{% block meta_description %}Privacy Policy for AnyUnit - How we handle your data and cookies{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li class="breadcrumb-item active">Privacy Policy</li>
+            </ol>
+        </nav>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h1 class="h2 mb-4">Privacy Policy</h1>
+                <p class="lead">Last updated: March 8, 2025</p>
+
+                <h2 class="h4 mt-4">1. Introduction</h2>
+                <p>This Privacy Policy explains how AnyUnit ("we", "us", "our") collects, uses, and protects your
+                    information when you use our website at anyunit.com ("the Website").</p>
+
+                <h2 class="h4 mt-4">2. Information We Collect</h2>
+                <p>We collect the following types of information:</p>
+                <ul>
+                    <li><strong>Usage Data:</strong> Information on how you use the Website, including pages visited,
+                        time spent, and conversion activities.</li>
+                    <li><strong>Cookies:</strong> Small pieces of data stored on your device to recognize your browser
+                        and remember certain information.</li>
+                </ul>
+
+                <h2 class="h4 mt-4">3. How We Use Cookies</h2>
+                <p>We use cookies to:</p>
+                <ul>
+                    <li>Understand and save user preferences for future visits</li>
+                    <li>Compile aggregate data about site traffic and site interactions</li>
+                    <li>Improve our website and user experience</li>
+                </ul>
+                <p>You can choose to have your computer warn you each time a cookie is being sent, or you can choose to
+                    turn off all cookies through your browser settings.</p>
+
+                <h2 class="h4 mt-4">4. Google Analytics</h2>
+                <p>We use Google Analytics to analyze the use of our website. Google Analytics is a web analytics
+                    service offered by Google that tracks and reports website traffic. Google uses the data collected to
+                    track and monitor the use of our Website. This data is shared with other Google services. Google may
+                    use the collected data to contextualize and personalize the ads of its own advertising network.</p>
+                <p>You can opt-out of having your activity on the Website made available to Google Analytics by
+                    installing the Google Analytics opt-out browser add-on (https://tools.google.com/dlpage/gaoptout).
+                </p>
+
+                <h2 class="h4 mt-4">5. Data Retention</h2>
+                <p>We will retain your information only for as long as necessary to fulfill the purposes outlined in
+                    this Privacy Policy.</p>
+
+                <h2 class="h4 mt-4">6. Your Data Protection Rights Under GDPR</h2>
+                <p>If you are a resident of the European Economic Area (EEA), you have certain data protection rights.
+                    You have the right to:</p>
+                <ul>
+                    <li>Access, update or delete your personal information</li>
+                    <li>Request correction of your personal data</li>
+                    <li>Object to processing of your personal data</li>
+                    <li>Request restriction of processing your personal data</li>
+                    <li>Request transfer of your personal data</li>
+                    <li>Withdraw consent where we relied on your consent to process your personal information</li>
+                </ul>
+
+                <h2 class="h4 mt-4">7. Changes to This Privacy Policy</h2>
+                <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the
+                    new Privacy Policy on this page and updating the "Last updated" date.</p>
+
+                <h2 class="h4 mt-4">8. Contact Us</h2>
+                <p>If you have any questions about this Privacy Policy, please contact us at privacy@anyunit.com.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

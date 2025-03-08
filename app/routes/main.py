@@ -15,3 +15,7 @@ def index():
     return render_template('pages/index.html',
                          categories=categories_data,
                          meta_tags=meta_tags)
+
+@main_bp.route('/privacy-policy')
+def privacy_policy():
+    return render_template('pages/privacy_policy.html')
