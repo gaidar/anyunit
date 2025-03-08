@@ -1,0 +1,128 @@
+[
+    {
+        "title": "Inches to Other Units",
+        "description": "Common conversions from inches to other length units",
+        "conversions": [
+            {
+                "from": "inch",
+                "to": "foot",
+                "ratio": "1 inch = 0.0833 feet",
+                "note": "12 inches = 1 foot"
+            },
+            {
+                "from": "inch",
+                "to": "yard",
+                "ratio": "1 inch = 0.0278 yards",
+                "note": "36 inches = 1 yard"
+            },
+            {
+                "from": "inch",
+                "to": "meter",
+                "ratio": "1 inch = 0.0254 meters",
+                "note": "Standard metric conversion"
+            },
+            {
+                "from": "inch",
+                "to": "centimeter",
+                "ratio": "1 inch = 2.54 centimeters",
+                "note": "Common conversion in crafts"
+            },
+            {
+                "from": "inch",
+                "to": "millimeter",
+                "ratio": "1 inch = 25.4 millimeters",
+                "note": "Used in precision measurements"
+            }
+        ]
+    },
+    {
+        "title": "Feet to Other Units",
+        "description": "Common conversions from feet to other length units",
+        "conversions": [
+            {
+                "from": "foot",
+                "to": "inch",
+                "ratio": "1 foot = 12 inches",
+                "note": "Basic imperial conversion"
+            },
+            {
+                "from": "foot",
+                "to": "yard",
+                "ratio": "1 foot = 0.333 yards",
+                "note": "3 feet = 1 yard"
+            },
+            {
+                "from": "foot",
+                "to": "meter",
+                "ratio": "1 foot = 0.3048 meters",
+                "note": "Standard metric conversion"
+            },
+            {
+                "from": "foot",
+                "to": "mile",
+                "ratio": "1 foot = 0.000189 miles",
+                "note": "5,280 feet = 1 mile"
+            }
+        ]
+    },
+    {
+        "title": "Meters to Other Units",
+        "description": "Common conversions from meters to other length units",
+        "conversions": [
+            {
+                "from": "meter",
+                "to": "centimeter",
+                "ratio": "1 meter = 100 centimeters",
+                "note": "Basic metric conversion"
+            },
+            {
+                "from": "meter",
+                "to": "kilometer",
+                "ratio": "1 meter = 0.001 kilometers",
+                "note": "1,000 meters = 1 kilometer"
+            },
+            {
+                "from": "meter",
+                "to": "foot",
+                "ratio": "1 meter = 3.28084 feet",
+                "note": "Common imperial conversion"
+            },
+            {
+                "from": "meter",
+                "to": "yard",
+                "ratio": "1 meter = 1.09361 yards",
+                "note": "Used in international sports"
+            }
+        ]
+    },
+    {
+        "title": "Miles to Other Units",
+        "description": "Common conversions from miles to other length units",
+        "conversions": [
+            {
+                "from": "mile",
+                "to": "kilometer",
+                "ratio": "1 mile = 1.60934 kilometers",
+                "note": "International standard conversion"
+            },
+            {
+                "from": "mile",
+                "to": "foot",
+                "ratio": "1 mile = 5,280 feet",
+                "note": "Basic imperial definition"
+            },
+            {
+                "from": "mile",
+                "to": "yard",
+                "ratio": "1 mile = 1,760 yards",
+                "note": "Common in land measurement"
+            },
+            {
+                "from": "mile",
+                "to": "meter",
+                "ratio": "1 mile = 1,609.34 meters",
+                "note": "Used in international comparisons"
+            }
+        ]
+    }
+]

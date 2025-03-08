@@ -1,0 +1,122 @@
+[
+    {
+        "title": "Joule to Other Units",
+        "description": "Common conversions from joules to other energy units",
+        "conversions": [
+            {
+                "from": "j",
+                "to": "kj",
+                "ratio": "1 J = 0.001 kJ",
+                "note": "Basic metric conversion"
+            },
+            {
+                "from": "j",
+                "to": "cal",
+                "ratio": "1 J = 0.239006 cal",
+                "note": "Used in thermal calculations"
+            },
+            {
+                "from": "j",
+                "to": "wh",
+                "ratio": "1 J = 0.000277778 Wh",
+                "note": "Energy to electrical conversion"
+            },
+            {
+                "from": "j",
+                "to": "btu",
+                "ratio": "1 J = 0.000947817 BTU",
+                "note": "Conversion to imperial unit"
+            }
+        ]
+    },
+    {
+        "title": "Kilocalorie to Other Units",
+        "description": "Common conversions from kilocalories to other energy units",
+        "conversions": [
+            {
+                "from": "kcal",
+                "to": "kj",
+                "ratio": "1 kcal = 4.184 kJ",
+                "note": "Used in nutrition"
+            },
+            {
+                "from": "kcal",
+                "to": "j",
+                "ratio": "1 kcal = 4184 J",
+                "note": "Standard scientific conversion"
+            },
+            {
+                "from": "kcal",
+                "to": "wh",
+                "ratio": "1 kcal = 1.16222 Wh",
+                "note": "Used in energy consumption calculations"
+            },
+            {
+                "from": "kcal",
+                "to": "btu",
+                "ratio": "1 kcal = 3.96567 BTU",
+                "note": "Used in heating and cooling"
+            }
+        ]
+    },
+    {
+        "title": "Kilowatt-hour to Other Units",
+        "description": "Common conversions from kilowatt-hours to other energy units",
+        "conversions": [
+            {
+                "from": "kwh",
+                "to": "kj",
+                "ratio": "1 kWh = 3,600 kJ",
+                "note": "Basic electrical energy conversion"
+            },
+            {
+                "from": "kwh",
+                "to": "j",
+                "ratio": "1 kWh = 3,600,000 J",
+                "note": "Full conversion to base SI unit"
+            },
+            {
+                "from": "kwh",
+                "to": "kcal",
+                "ratio": "1 kWh = 860.421 kcal",
+                "note": "Used in heating calculations"
+            },
+            {
+                "from": "kwh",
+                "to": "btu",
+                "ratio": "1 kWh = 3,412.14 BTU",
+                "note": "Used in HVAC applications"
+            }
+        ]
+    },
+    {
+        "title": "BTU to Other Units",
+        "description": "Common conversions from British Thermal Units to other energy units",
+        "conversions": [
+            {
+                "from": "btu",
+                "to": "j",
+                "ratio": "1 BTU = 1,055.06 J",
+                "note": "Standard scientific conversion"
+            },
+            {
+                "from": "btu",
+                "to": "kj",
+                "ratio": "1 BTU = 1.05506 kJ",
+                "note": "Used in engineering"
+            },
+            {
+                "from": "btu",
+                "to": "kcal",
+                "ratio": "1 BTU = 0.252164 kcal",
+                "note": "Used in heating applications"
+            },
+            {
+                "from": "btu",
+                "to": "kwh",
+                "ratio": "1 BTU = 0.000293071 kWh",
+                "note": "Used in energy efficiency calculations"
+            }
+        ]
+    }
+]

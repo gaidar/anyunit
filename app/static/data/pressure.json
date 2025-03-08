@@ -1,0 +1,122 @@
+[
+    {
+        "title": "Pascal to Other Units",
+        "description": "Common conversions from pascal to other pressure units",
+        "conversions": [
+            {
+                "from": "pa",
+                "to": "kpa",
+                "ratio": "1 Pa = 0.001 kPa",
+                "note": "Basic metric conversion"
+            },
+            {
+                "from": "pa",
+                "to": "bar",
+                "ratio": "1 Pa = 0.00001 bar",
+                "note": "Common engineering conversion"
+            },
+            {
+                "from": "pa",
+                "to": "psi",
+                "ratio": "1 Pa = 0.000145038 psi",
+                "note": "Conversion to imperial unit"
+            },
+            {
+                "from": "pa",
+                "to": "atm",
+                "ratio": "1 Pa = 0.00000986923 atm",
+                "note": "Used in scientific calculations"
+            }
+        ]
+    },
+    {
+        "title": "Bar to Other Units",
+        "description": "Common conversions from bar to other pressure units",
+        "conversions": [
+            {
+                "from": "bar",
+                "to": "kpa",
+                "ratio": "1 bar = 100 kPa",
+                "note": "Common metric conversion"
+            },
+            {
+                "from": "bar",
+                "to": "psi",
+                "ratio": "1 bar = 14.5038 psi",
+                "note": "Important for international specifications"
+            },
+            {
+                "from": "bar",
+                "to": "atm",
+                "ratio": "1 bar = 0.986923 atm",
+                "note": "Approximately 1 atmosphere"
+            },
+            {
+                "from": "bar",
+                "to": "mmhg",
+                "ratio": "1 bar = 750.062 mmHg",
+                "note": "Used in weather and medical applications"
+            }
+        ]
+    },
+    {
+        "title": "PSI to Other Units",
+        "description": "Common conversions from pounds per square inch to other pressure units",
+        "conversions": [
+            {
+                "from": "psi",
+                "to": "kpa",
+                "ratio": "1 psi = 6.89476 kPa",
+                "note": "Standard metric conversion"
+            },
+            {
+                "from": "psi",
+                "to": "bar",
+                "ratio": "1 psi = 0.0689476 bar",
+                "note": "Used in industrial applications"
+            },
+            {
+                "from": "psi",
+                "to": "atm",
+                "ratio": "1 psi = 0.068046 atm",
+                "note": "Used in scientific calculations"
+            },
+            {
+                "from": "psi",
+                "to": "mmhg",
+                "ratio": "1 psi = 51.7149 mmHg",
+                "note": "Used in medical and meteorological contexts"
+            }
+        ]
+    },
+    {
+        "title": "Atmosphere to Other Units",
+        "description": "Common conversions from atmosphere to other pressure units",
+        "conversions": [
+            {
+                "from": "atm",
+                "to": "kpa",
+                "ratio": "1 atm = 101.325 kPa",
+                "note": "Standard atmospheric pressure at sea level"
+            },
+            {
+                "from": "atm",
+                "to": "bar",
+                "ratio": "1 atm = 1.01325 bar",
+                "note": "Slightly more than 1 bar"
+            },
+            {
+                "from": "atm",
+                "to": "psi",
+                "ratio": "1 atm = 14.6959 psi",
+                "note": "Used in engineering and science"
+            },
+            {
+                "from": "atm",
+                "to": "mmhg",
+                "ratio": "1 atm = 760 mmHg",
+                "note": "Traditional definition of atmosphere"
+            }
+        ]
+    }
+]

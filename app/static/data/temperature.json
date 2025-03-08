@@ -1,0 +1,74 @@
+[
+    {
+        "title": "Celsius to Other Units",
+        "description": "Common conversions from Celsius to other temperature units",
+        "conversions": [
+            {
+                "from": "celsius",
+                "to": "fahrenheit",
+                "formula": "°F = (°C × 9/5) + 32",
+                "note": "Standard conversion formula"
+            },
+            {
+                "from": "celsius",
+                "to": "kelvin",
+                "formula": "K = °C + 273.15",
+                "note": "Scientific standard conversion"
+            }
+        ]
+    },
+    {
+        "title": "Fahrenheit to Other Units",
+        "description": "Common conversions from Fahrenheit to other temperature units",
+        "conversions": [
+            {
+                "from": "fahrenheit",
+                "to": "celsius",
+                "formula": "°C = (°F - 32) × 5/9",
+                "note": "Standard conversion formula"
+            },
+            {
+                "from": "fahrenheit",
+                "to": "kelvin",
+                "formula": "K = (°F - 32) × 5/9 + 273.15",
+                "note": "Less common but useful"
+            }
+        ]
+    },
+    {
+        "title": "Important Temperature Points",
+        "description": "Reference points in different temperature scales",
+        "points": [
+            {
+                "description": "Water Freezing Point",
+                "celsius": "0°C",
+                "fahrenheit": "32°F",
+                "kelvin": "273.15K"
+            },
+            {
+                "description": "Water Boiling Point",
+                "celsius": "100°C",
+                "fahrenheit": "212°F",
+                "kelvin": "373.15K"
+            },
+            {
+                "description": "Room Temperature",
+                "celsius": "20-22°C",
+                "fahrenheit": "68-72°F",
+                "kelvin": "293-295K"
+            },
+            {
+                "description": "Body Temperature",
+                "celsius": "37°C",
+                "fahrenheit": "98.6°F",
+                "kelvin": "310.15K"
+            },
+            {
+                "description": "Absolute Zero",
+                "celsius": "-273.15°C",
+                "fahrenheit": "-459.67°F",
+                "kelvin": "0K"
+            }
+        ]
+    }
+]

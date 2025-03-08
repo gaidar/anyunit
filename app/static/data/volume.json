@@ -1,0 +1,134 @@
+[
+    {
+        "title": "Fluid Ounces to Other Units",
+        "description": "Common conversions from fluid ounces to other volume units",
+        "conversions": [
+            {
+                "from": "fluid ounce",
+                "to": "cup",
+                "ratio": "1 fluid ounce = 0.125 cups",
+                "note": "8 fluid ounces = 1 cup"
+            },
+            {
+                "from": "fluid ounce",
+                "to": "pint",
+                "ratio": "1 fluid ounce = 0.0625 pints",
+                "note": "16 fluid ounces = 1 pint"
+            },
+            {
+                "from": "fluid ounce",
+                "to": "quart",
+                "ratio": "1 fluid ounce = 0.03125 quarts",
+                "note": "32 fluid ounces = 1 quart"
+            },
+            {
+                "from": "fluid ounce",
+                "to": "gallon",
+                "ratio": "1 fluid ounce = 0.0078125 gallons",
+                "note": "128 fluid ounces = 1 gallon"
+            },
+            {
+                "from": "fluid ounce",
+                "to": "milliliter",
+                "ratio": "1 fluid ounce = 29.5735 milliliters",
+                "note": "Standard metric conversion"
+            }
+        ]
+    },
+    {
+        "title": "Cups to Other Units",
+        "description": "Common conversions from cups to other volume units",
+        "conversions": [
+            {
+                "from": "cup",
+                "to": "fluid ounce",
+                "ratio": "1 cup = 8 fluid ounces",
+                "note": "Common in cooking"
+            },
+            {
+                "from": "cup",
+                "to": "pint",
+                "ratio": "1 cup = 0.5 pints",
+                "note": "2 cups = 1 pint"
+            },
+            {
+                "from": "cup",
+                "to": "milliliter",
+                "ratio": "1 cup = 236.588 milliliters",
+                "note": "Standard metric conversion"
+            },
+            {
+                "from": "cup",
+                "to": "liter",
+                "ratio": "1 cup = 0.236588 liters",
+                "note": "For larger recipes"
+            }
+        ]
+    },
+    {
+        "title": "Liters to Other Units",
+        "description": "Common conversions from liters to other volume units",
+        "conversions": [
+            {
+                "from": "liter",
+                "to": "milliliter",
+                "ratio": "1 liter = 1,000 milliliters",
+                "note": "Basic metric conversion"
+            },
+            {
+                "from": "liter",
+                "to": "gallon",
+                "ratio": "1 liter = 0.264172 gallons",
+                "note": "Important for fuel calculations"
+            },
+            {
+                "from": "liter",
+                "to": "quart",
+                "ratio": "1 liter = 1.05669 quarts",
+                "note": "Common for comparing products"
+            },
+            {
+                "from": "liter",
+                "to": "cubic meter",
+                "ratio": "1 liter = 0.001 cubic meters",
+                "note": "1,000 liters = 1 cubic meter"
+            }
+        ]
+    },
+    {
+        "title": "Gallons to Other Units",
+        "description": "Common conversions from gallons to other volume units",
+        "conversions": [
+            {
+                "from": "gallon",
+                "to": "quart",
+                "ratio": "1 gallon = 4 quarts",
+                "note": "Basic imperial conversion"
+            },
+            {
+                "from": "gallon",
+                "to": "pint",
+                "ratio": "1 gallon = 8 pints",
+                "note": "Common for liquids"
+            },
+            {
+                "from": "gallon",
+                "to": "cup",
+                "ratio": "1 gallon = 16 cups",
+                "note": "Used in cooking conversions"
+            },
+            {
+                "from": "gallon",
+                "to": "fluid ounce",
+                "ratio": "1 gallon = 128 fluid ounces",
+                "note": "Precise measurements"
+            },
+            {
+                "from": "gallon",
+                "to": "liter",
+                "ratio": "1 gallon = 3.78541 liters",
+                "note": "Standard metric conversion"
+            }
+        ]
+    }
+]

@@ -1,0 +1,116 @@
+[
+    {
+        "title": "Pounds to Other Units",
+        "description": "Common conversions from pounds to other weight/mass units",
+        "conversions": [
+            {
+                "from": "pound",
+                "to": "ounce",
+                "ratio": "1 pound = 16 ounces",
+                "note": "Basic imperial conversion"
+            },
+            {
+                "from": "pound",
+                "to": "kilogram",
+                "ratio": "1 pound = 0.453592 kilograms",
+                "note": "Standard metric conversion"
+            },
+            {
+                "from": "pound",
+                "to": "gram",
+                "ratio": "1 pound = 453.592 grams",
+                "note": "Common in international recipes"
+            },
+            {
+                "from": "pound",
+                "to": "stone",
+                "ratio": "1 pound = 0.0714286 stone",
+                "note": "14 pounds = 1 stone (UK measurement)"
+            }
+        ]
+    },
+    {
+        "title": "Kilograms to Other Units",
+        "description": "Common conversions from kilograms to other weight/mass units",
+        "conversions": [
+            {
+                "from": "kilogram",
+                "to": "gram",
+                "ratio": "1 kilogram = 1,000 grams",
+                "note": "Basic metric conversion"
+            },
+            {
+                "from": "kilogram",
+                "to": "pound",
+                "ratio": "1 kilogram = 2.20462 pounds",
+                "note": "Standard imperial conversion"
+            },
+            {
+                "from": "kilogram",
+                "to": "ounce",
+                "ratio": "1 kilogram = 35.274 ounces",
+                "note": "Used in international trade"
+            },
+            {
+                "from": "kilogram",
+                "to": "metric ton",
+                "ratio": "1 kilogram = 0.001 metric tons",
+                "note": "1,000 kilograms = 1 metric ton"
+            }
+        ]
+    },
+    {
+        "title": "Ounces to Other Units",
+        "description": "Common conversions from ounces to other weight/mass units",
+        "conversions": [
+            {
+                "from": "ounce",
+                "to": "pound",
+                "ratio": "1 ounce = 0.0625 pounds",
+                "note": "16 ounces = 1 pound"
+            },
+            {
+                "from": "ounce",
+                "to": "gram",
+                "ratio": "1 ounce = 28.3495 grams",
+                "note": "Common in cooking conversions"
+            },
+            {
+                "from": "ounce",
+                "to": "kilogram",
+                "ratio": "1 ounce = 0.0283495 kilograms",
+                "note": "Used in international shipping"
+            }
+        ]
+    },
+    {
+        "title": "Tons to Other Units",
+        "description": "Common conversions from tons to other weight/mass units",
+        "conversions": [
+            {
+                "from": "ton",
+                "to": "pound",
+                "ratio": "1 ton = 2,000 pounds",
+                "note": "US short ton definition"
+            },
+            {
+                "from": "ton",
+                "to": "kilogram",
+                "ratio": "1 ton = 907.185 kilograms",
+                "note": "US short ton to metric"
+            },
+            {
+                "from": "metric ton",
+                "to": "ton",
+                "ratio": "1 metric ton = 1.10231 tons",
+                "note": "Metric to US ton conversion"
+            },
+            {
+                "from": "metric ton",
+                "to": "kilogram",
+                "ratio": "1 metric ton = 1,000 kilograms",
+                "note": "Basic metric definition"
+            }
+        ]
+    }
+]

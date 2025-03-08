@@ -1,0 +1,122 @@
+[
+    {
+        "title": "Miles per Hour to Other Units",
+        "description": "Common conversions from miles per hour to other speed units",
+        "conversions": [
+            {
+                "from": "mph",
+                "to": "kph",
+                "ratio": "1 mph = 1.60934 km/h",
+                "note": "Standard conversion used internationally"
+            },
+            {
+                "from": "mph",
+                "to": "mps",
+                "ratio": "1 mph = 0.44704 m/s",
+                "note": "Used in physics calculations"
+            },
+            {
+                "from": "mph",
+                "to": "fps",
+                "ratio": "1 mph = 1.46667 ft/s",
+                "note": "Common in engineering"
+            },
+            {
+                "from": "mph",
+                "to": "knot",
+                "ratio": "1 mph = 0.868976 knots",
+                "note": "Used in maritime and aviation"
+            }
+        ]
+    },
+    {
+        "title": "Kilometers per Hour to Other Units",
+        "description": "Common conversions from kilometers per hour to other speed units",
+        "conversions": [
+            {
+                "from": "kph",
+                "to": "mph",
+                "ratio": "1 km/h = 0.621371 mph",
+                "note": "Standard international conversion"
+            },
+            {
+                "from": "kph",
+                "to": "mps",
+                "ratio": "1 km/h = 0.277778 m/s",
+                "note": "Divide by 3.6 for quick calculation"
+            },
+            {
+                "from": "kph",
+                "to": "fps",
+                "ratio": "1 km/h = 0.911344 ft/s",
+                "note": "Used in engineering"
+            },
+            {
+                "from": "kph",
+                "to": "knot",
+                "ratio": "1 km/h = 0.539957 knots",
+                "note": "Used in maritime and aviation"
+            }
+        ]
+    },
+    {
+        "title": "Meters per Second to Other Units",
+        "description": "Common conversions from meters per second to other speed units",
+        "conversions": [
+            {
+                "from": "mps",
+                "to": "kph",
+                "ratio": "1 m/s = 3.6 km/h",
+                "note": "Standard metric conversion"
+            },
+            {
+                "from": "mps",
+                "to": "mph",
+                "ratio": "1 m/s = 2.23694 mph",
+                "note": "Used in international comparisons"
+            },
+            {
+                "from": "mps",
+                "to": "fps",
+                "ratio": "1 m/s = 3.28084 ft/s",
+                "note": "Used in engineering calculations"
+            },
+            {
+                "from": "mps",
+                "to": "knot",
+                "ratio": "1 m/s = 1.94384 knots",
+                "note": "Used in meteorology and navigation"
+            }
+        ]
+    },
+    {
+        "title": "Knots to Other Units",
+        "description": "Common conversions from knots to other speed units",
+        "conversions": [
+            {
+                "from": "knot",
+                "to": "mph",
+                "ratio": "1 knot = 1.15078 mph",
+                "note": "Used in aviation and maritime"
+            },
+            {
+                "from": "knot",
+                "to": "kph",
+                "ratio": "1 knot = 1.852 km/h",
+                "note": "International standard"
+            },
+            {
+                "from": "knot",
+                "to": "mps",
+                "ratio": "1 knot = 0.514444 m/s",
+                "note": "Used in scientific calculations"
+            },
+            {
+                "from": "knot",
+                "to": "fps",
+                "ratio": "1 knot = 1.68781 ft/s",
+                "note": "Used in engineering"
+            }
+        ]
+    }
+]
