@@ -19,6 +19,73 @@
             <p class="lead">{{ category_info.description }}</p>
         </div>
 
+        {% if detailed_tables %}
+        <section class="detailed-conversion-tables mt-5 mb-5">
+            <h2 class="mb-4">{{ category_info.title }} Conversion Reference</h2>
+
+            {% for table in detailed_tables %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 class="h5 mb-0">{{ table.title }}</h3>
+                </div>
+                <div class="card-body">
+                    <p>{{ table.description }}</p>
+
+                    {% if table.conversions is defined %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Conversion Ratio</th>
+                                    <th>Note</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for conv in table.conversions %}
+                                <tr>
+                                    <td>{{ conv.from }}</td>
+                                    <td>{{ conv.to }}</td>
+                                    <td>{{ conv.ratio if conv.ratio is defined else conv.formula }}</td>
+                                    <td>{{ conv.note }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endif %}
+
+                    {% if table.points is defined %}
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Reference Point</th>
+                                    <th>Celsius</th>
+                                    <th>Fahrenheit</th>
+                                    <th>Kelvin</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for point in table.points %}
+                                <tr>
+                                    <td>{{ point.description }}</td>
+                                    <td>{{ point.celsius }}</td>
+                                    <td>{{ point.fahrenheit }}</td>
+                                    <td>{{ point.kelvin }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
         {% if conversion_tables %}
         <section class="conversion-tables mt-5">
             <h2>Common Conversion Tables</h2>
@@ -40,8 +107,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for row in table.table_values %} {# Changed from table.values to
-                                    table.table_values #}
+                                    {% for row in table.table_values %}
                                     <tr>
                                         <td>{{ row.from }}</td>
                                         <td>{{ row.to }}</td>

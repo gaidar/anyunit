@@ -126,6 +126,11 @@ def category(category):
             }
             conversion_tables.append(table)
     
+    # Get detailed conversion tables for special categories
+    detailed_tables = []
+    if normalized_category in ['length', 'temperature', 'weight']:
+        detailed_tables = unit_manager.get_detailed_conversion_tables(normalized_category)
+    
     meta_tags = generate_meta_tags(category=normalized_category)
     
     return render_template('pages/category.html',
@@ -133,6 +138,7 @@ def category(category):
                          category_info=category_info,
                          units=category_info['units'],
                          conversion_tables=conversion_tables,
+                         detailed_tables=detailed_tables,
                          meta_tags=meta_tags)
 
 @converter_bp.route('/<category>/<from_unit>-to-<to_unit>')

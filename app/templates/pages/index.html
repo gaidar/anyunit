@@ -87,9 +87,23 @@
     </div>
 </div>
 
-{# Category Grid #}
+{# Featured Categories - Length, Temperature, Weight #}
+<div class="text-center mb-5">
+    <div class="d-inline-flex justify-content-center gap-3 flex-wrap">
+        {% for category_id in ['length', 'temperature', 'weight'] %}
+        {% if category_id in categories %}
+        <a href="{{ url_for('converter.category', category=category_id) }}" class="btn btn-primary m-2 px-4 py-2 fs-5">
+            {{ categories[category_id].icon }} {{ categories[category_id].title }}
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{# Remaining Category Grid #}
 <div class="row g-4" id="category-grid">
     {% for category_id, category_data in categories.items() %}
+    {% if category_id not in ['length', 'temperature', 'weight'] %}
     <div class="col-12 col-sm-6 col-md-4 col-lg-3 category-item" data-category="{{ category_id }}"
         data-title="{{ category_data.title }}" data-description="{{ category_data.description }}">
         <div class="card h-100 category-card">
@@ -102,6 +116,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
     {% endfor %}
 </div>
 {% endblock %}

@@ -95,3 +95,134 @@ class UnitManager:
             return conversions[conversion_key](value)
         
         return None
+
+    def get_length_conversion_tables(self):
+        return [
+            {
+                "title": "Inches to Other Units",
+                "description": "Common conversions from inches to other length units",
+                "conversions": [
+                    {"from": "inch", "to": "foot", "ratio": "1 inch = 0.0833 feet", "note": "12 inches = 1 foot"},
+                    {"from": "inch", "to": "yard", "ratio": "1 inch = 0.0278 yards", "note": "36 inches = 1 yard"},
+                    {"from": "inch", "to": "meter", "ratio": "1 inch = 0.0254 meters", "note": "Standard metric conversion"},
+                    {"from": "inch", "to": "centimeter", "ratio": "1 inch = 2.54 centimeters", "note": "Common conversion in crafts"},
+                    {"from": "inch", "to": "millimeter", "ratio": "1 inch = 25.4 millimeters", "note": "Used in precision measurements"}
+                ]
+            },
+            {
+                "title": "Feet to Other Units",
+                "description": "Common conversions from feet to other length units",
+                "conversions": [
+                    {"from": "foot", "to": "inch", "ratio": "1 foot = 12 inches", "note": "Basic imperial conversion"},
+                    {"from": "foot", "to": "yard", "ratio": "1 foot = 0.333 yards", "note": "3 feet = 1 yard"},
+                    {"from": "foot", "to": "meter", "ratio": "1 foot = 0.3048 meters", "note": "Standard metric conversion"},
+                    {"from": "foot", "to": "mile", "ratio": "1 foot = 0.000189 miles", "note": "5,280 feet = 1 mile"}
+                ]
+            },
+            {
+                "title": "Meters to Other Units",
+                "description": "Common conversions from meters to other length units",
+                "conversions": [
+                    {"from": "meter", "to": "centimeter", "ratio": "1 meter = 100 centimeters", "note": "Basic metric conversion"},
+                    {"from": "meter", "to": "kilometer", "ratio": "1 meter = 0.001 kilometers", "note": "1,000 meters = 1 kilometer"},
+                    {"from": "meter", "to": "foot", "ratio": "1 meter = 3.28084 feet", "note": "Common imperial conversion"},
+                    {"from": "meter", "to": "yard", "ratio": "1 meter = 1.09361 yards", "note": "Used in international sports"}
+                ]
+            },
+            {
+                "title": "Miles to Other Units",
+                "description": "Common conversions from miles to other length units",
+                "conversions": [
+                    {"from": "mile", "to": "kilometer", "ratio": "1 mile = 1.60934 kilometers", "note": "International standard conversion"},
+                    {"from": "mile", "to": "foot", "ratio": "1 mile = 5,280 feet", "note": "Basic imperial definition"},
+                    {"from": "mile", "to": "yard", "ratio": "1 mile = 1,760 yards", "note": "Common in land measurement"},
+                    {"from": "mile", "to": "meter", "ratio": "1 mile = 1,609.34 meters", "note": "Used in international comparisons"}
+                ]
+            }
+        ]
+
+    def get_temperature_conversion_tables(self):
+    
+        return [
+            {
+                "title": "Celsius to Other Units",
+                "description": "Common conversions from Celsius to other temperature units",
+                "conversions": [
+                    {"from": "celsius", "to": "fahrenheit", "formula": "°F = (°C × 9/5) + 32", "note": "Standard conversion formula"},
+                    {"from": "celsius", "to": "kelvin", "formula": "K = °C + 273.15", "note": "Scientific standard conversion"}
+                ]
+            },
+            {
+                "title": "Fahrenheit to Other Units",
+                "description": "Common conversions from Fahrenheit to other temperature units",
+                "conversions": [
+                    {"from": "fahrenheit", "to": "celsius", "formula": "°C = (°F - 32) × 5/9", "note": "Standard conversion formula"},
+                    {"from": "fahrenheit", "to": "kelvin", "formula": "K = (°F - 32) × 5/9 + 273.15", "note": "Less common but useful"}
+                ]
+            },
+            {
+                "title": "Important Temperature Points",
+                "description": "Reference points in different temperature scales",
+                "points": [
+                    {"description": "Water Freezing Point", "celsius": "0°C", "fahrenheit": "32°F", "kelvin": "273.15K"},
+                    {"description": "Water Boiling Point", "celsius": "100°C", "fahrenheit": "212°F", "kelvin": "373.15K"},
+                    {"description": "Room Temperature", "celsius": "20-22°C", "fahrenheit": "68-72°F", "kelvin": "293-295K"},
+                    {"description": "Body Temperature", "celsius": "37°C", "fahrenheit": "98.6°F", "kelvin": "310.15K"},
+                    {"description": "Absolute Zero", "celsius": "-273.15°C", "fahrenheit": "-459.67°F", "kelvin": "0K"}
+                ]
+            }
+        ]
+
+    def get_weight_conversion_tables(self):
+        return [
+            {
+                "title": "Pounds to Other Units",
+                "description": "Common conversions from pounds to other weight/mass units",
+                "conversions": [
+                    {"from": "pound", "to": "ounce", "ratio": "1 pound = 16 ounces", "note": "Basic imperial conversion"},
+                    {"from": "pound", "to": "kilogram", "ratio": "1 pound = 0.453592 kilograms", "note": "Standard metric conversion"},
+                    {"from": "pound", "to": "gram", "ratio": "1 pound = 453.592 grams", "note": "Common in international recipes"},
+                    {"from": "pound", "to": "stone", "ratio": "1 pound = 0.0714286 stone", "note": "14 pounds = 1 stone (UK measurement)"}
+                ]
+            },
+            {
+                "title": "Kilograms to Other Units",
+                "description": "Common conversions from kilograms to other weight/mass units",
+                "conversions": [
+                    {"from": "kilogram", "to": "gram", "ratio": "1 kilogram = 1,000 grams", "note": "Basic metric conversion"},
+                    {"from": "kilogram", "to": "pound", "ratio": "1 kilogram = 2.20462 pounds", "note": "Standard imperial conversion"},
+                    {"from": "kilogram", "to": "ounce", "ratio": "1 kilogram = 35.274 ounces", "note": "Used in international trade"},
+                    {"from": "kilogram", "to": "metric ton", "ratio": "1 kilogram = 0.001 metric tons", "note": "1,000 kilograms = 1 metric ton"}
+                ]
+            },
+            {
+                "title": "Ounces to Other Units",
+                "description": "Common conversions from ounces to other weight/mass units",
+                "conversions": [
+                    {"from": "ounce", "to": "pound", "ratio": "1 ounce = 0.0625 pounds", "note": "16 ounces = 1 pound"},
+                    {"from": "ounce", "to": "gram", "ratio": "1 ounce = 28.3495 grams", "note": "Common in cooking conversions"},
+                    {"from": "ounce", "to": "kilogram", "ratio": "1 ounce = 0.0283495 kilograms", "note": "Used in international shipping"}
+                ]
+            },
+            {
+                "title": "Tons to Other Units",
+                "description": "Common conversions from tons to other weight/mass units",
+                "conversions": [
+                    {"from": "ton", "to": "pound", "ratio": "1 ton = 2,000 pounds", "note": "US short ton definition"},
+                    {"from": "ton", "to": "kilogram", "ratio": "1 ton = 907.185 kilograms", "note": "US short ton to metric"},
+                    {"from": "metric ton", "to": "ton", "ratio": "1 metric ton = 1.10231 tons", "note": "Metric to US ton conversion"},
+                    {"from": "metric ton", "to": "kilogram", "ratio": "1 metric ton = 1,000 kilograms", "note": "Basic metric definition"}
+                ]
+            }
+        ]
+
+    def get_detailed_conversion_tables(self, category_id):
+        """Get detailed conversion tables for a specific category"""
+        if category_id == 'length':
+            return self.get_length_conversion_tables()
+        elif category_id == 'temperature':
+            return self.get_temperature_conversion_tables()
+        elif category_id == 'weight':
+            return self.get_weight_conversion_tables()
+        else:
+            return []
