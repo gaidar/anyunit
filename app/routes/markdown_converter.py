@@ -12,7 +12,7 @@ markdown_bp = Blueprint('markdown', __name__)
 @markdown_bp.route('/')
 def index():
     """Render the markdown converter page"""
-    return render_template('markdown/index.html')
+    return render_template('pages/markdown.html')
 
 @markdown_bp.route('/convert', methods=['POST'])
 def convert():

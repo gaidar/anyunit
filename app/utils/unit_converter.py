@@ -89,8 +89,6 @@ class UnitManager:
         
         return None
 
-
-
     def get_detailed_conversion_tables(self, category_id):
         json_path = os.path.join(current_app.static_folder, 'data', category_id + '.json')
         with open(json_path, 'r', encoding='utf-8') as f:

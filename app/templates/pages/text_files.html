@@ -1,0 +1,197 @@
+{# templates/pages/text_files.html #}
+{% extends "base.html" %}
+
+{% block title %}Text File Format Converter - AnyUnit{% endblock %}
+{% block meta_description %}Convert between different text file formats like JSON, XML, and CSV. Free, fast, and
+accurate converter.{% endblock %}
+
+{% block extra_css %}
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" rel="stylesheet">
+<style>
+    .converter-container {
+        display: flex;
+        flex-direction: column;
+        height: 70vh;
+        gap: 1rem;
+    }
+
+    .editor-container {
+        display: flex;
+        flex: 1;
+        gap: 1rem;
+        min-height: 400px;
+    }
+
+    .editor-pane,
+    .output-pane {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .editor-header,
+    .output-header {
+        background-color: #f5f5f5;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+    }
+
+    #input-editor {
+        flex: 1;
+        padding: 1rem;
+        border: none;
+        resize: none;
+        font-family: monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    #output-content {
+        flex: 1;
+        padding: 1rem;
+        overflow: auto;
+        font-family: monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        white-space: pre-wrap;
+    }
+
+    .actions-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .format-selector {
+        max-width: 300px;
+    }
+
+    /* Error styling */
+    .error-message {
+        color: #dc3545;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        border: 1px solid #dc3545;
+        border-radius: 4px;
+        background-color: #f8d7da;
+        display: none;
+    }
+
+    /* Sample button styles */
+    .sample-btn {
+        font-size: 0.8rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li class="breadcrumb-item active">Text File Format Converter</li>
+            </ol>
+        </nav>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <p class="lead">Convert between text file formats like JSON, XML, and CSV.</p>
+                <div class="actions-container mb-3">
+                    <div class="format-selector">
+                        <label for="conversion-format" class="form-label">Conversion Format:</label>
+                        <select id="conversion-format" class="form-select">
+                            {% for format in conversion_formats %}
+                            <option value="{{ format.id }}">{{ format.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="sample-actions">
+                        <button id="load-sample-btn" class="btn btn-outline-primary btn-sm sample-btn">
+                            <i class="bi bi-file-earmark-text"></i> Load Sample
+                        </button>
+                    </div>
+                </div>
+
+                <div class="converter-container">
+                    <div class="editor-container">
+                        <div class="editor-pane">
+                            <div class="editor-header">Input</div>
+                            <textarea id="input-editor" placeholder="Enter your text here..." autofocus></textarea>
+                        </div>
+                        <div class="output-pane">
+                            <div class="output-header">Output</div>
+                            <div id="output-content"></div>
+                        </div>
+                    </div>
+
+                    <div id="error-message" class="error-message"></div>
+
+                    <div class="actions-container">
+                        <button id="convert-btn" class="btn btn-primary">
+                            <i class="bi bi-arrow-left-right"></i> Convert
+                        </button>
+                        <div>
+                            <button id="copy-output-btn" class="btn btn-outline-primary" disabled>
+                                <i class="bi bi-clipboard"></i> Copy Output
+                            </button>
+                            <button id="download-btn" class="btn btn-outline-primary" disabled>
+                                <i class="bi bi-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h5 mb-0">Supported Conversions</h2>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h3 class="h6">JSON to XML</h3>
+                        <p class="mb-0 small">Convert JSON data to XML format. Useful for integrating with XML-based
+                            systems.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <h3 class="h6">JSON to CSV</h3>
+                        <p class="mb-0 small">Convert JSON arrays to CSV format. Best for flat data structures.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <h3 class="h6">CSV to JSON</h3>
+                        <p class="mb-0 small">Convert CSV data to JSON format. Creates an array of objects with property
+                            names from headers.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <h3 class="h6">CSV to XML</h3>
+                        <p class="mb-0 small">Convert CSV data to XML format. Each row becomes an element with column
+                            headers as attributes or child elements.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <h3 class="h6">XML to JSON</h3>
+                        <p class="mb-0 small">Convert XML data to JSON format. XML attributes and text content are
+                            preserved in the JSON structure.</p>
+                    </li>
+                    <li class="list-group-item">
+                        <h3 class="h6">XML to CSV</h3>
+                        <p class="mb-0 small">Convert XML data to CSV format. Best for XML with a regular, repeating
+                            structure.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+<script src="{{ url_for('static', filename='js/text_file_converter.js') }}"></script>
+{% endblock %}
