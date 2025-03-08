@@ -1,0 +1,418 @@
+{# templates/pages/timezone.html #}
+{% extends "base.html" %}
+
+{% block title %}Timezone Converter - AnyUnit{% endblock %}
+{% block meta_description %}Convert between timezones, find current local time for any city worldwide, and see time
+differences between locations.{% endblock %}
+
+{% block extra_css %}
+<style>
+    .timezone-converter-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .city-input-group {
+        margin-bottom: 1.5rem;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        background-color: #f8f9fa;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+
+    .city-info {
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: #fff;
+        border-radius: 0.25rem;
+        border: 1px solid #dee2e6;
+    }
+
+    .city-info.error {
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        color: #721c24;
+    }
+
+    .dst-badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        background-color: #ffc107;
+        color: #212529;
+        margin-left: 0.5rem;
+    }
+
+    .timezone-table {
+        margin-top: 2rem;
+    }
+
+    .city-list {
+        max-height: 100px;
+        overflow-y: auto;
+    }
+
+    .time-difference {
+        text-align: center;
+        padding: 1rem;
+        margin: 1rem 0;
+        background-color: #e9ecef;
+        border-radius: 0.25rem;
+        font-weight: bold;
+    }
+
+    .current-time {
+        font-weight: normal;
+        font-size: inherit;
+    }
+
+    .timezone-name {
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li class="breadcrumb-item active">Timezone Converter</li>
+            </ol>
+        </nav>
+
+        <div class="timezone-converter-container">
+            <h1 class="mb-4">Timezone Converter</h1>
+            <p class="lead mb-4">Find the current time in one of the world's capitals and compare with another.</p>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="city-input-group">
+                        <h3 class="h5">Capital #1</h3>
+                        <div class="input-group mb-3">
+                            <input type="text" id="city1" class="form-control" placeholder="Enter city name..."
+                                aria-label="City 1" list="cityList1" autocomplete="off">
+                            <datalist id="cityList1">
+                                {% for city_key, city_data in cities_data.items() %}
+                                <option value="{{ city_data.name }}">
+                                    {% endfor %}
+                            </datalist>
+                            <button class="btn btn-primary" type="button" id="getCity1">Look Up</button>
+                        </div>
+                        <div id="city1Info" class="city-info d-none">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="mb-1">City: <span id="city1Name" class="fw-bold"></span></p>
+                                    <p class="mb-1">Timezone: <span id="city1Timezone" class="timezone-name"></span>
+                                        <span id="city1DST" class="dst-badge d-none">DST Active</span>
+                                    </p>
+                                    <p class="mb-1">UTC Offset: <span id="city1Offset"></span></p>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <p class="mb-1">Current Date:</p>
+                                    <p id="city1Date" class="mb-1"></p>
+                                    <p class="current-time" id="city1Time"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="city1Error" class="city-info error d-none">
+                            <p class="mb-0">City not found. Please try another city name.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="city-input-group">
+                        <h3 class="h5">Capital #2</h3>
+                        <div class="input-group mb-3">
+                            <input type="text" id="city2" class="form-control" placeholder="Enter city name..."
+                                aria-label="City 2" list="cityList2" autocomplete="off">
+                            <datalist id="cityList2">
+                                {% for city_key, city_data in cities_data.items() %}
+                                <option value="{{ city_data.name }}">
+                                    {% endfor %}
+                            </datalist>
+                            <button class="btn btn-primary" type="button" id="getCity2">Look Up</button>
+                        </div>
+                        <div id="city2Info" class="city-info d-none">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="mb-1">City: <span id="city2Name" class="fw-bold"></span></p>
+                                    <p class="mb-1">Timezone: <span id="city2Timezone" class="timezone-name"></span>
+                                        <span id="city2DST" class="dst-badge d-none">DST Active</span>
+                                    </p>
+                                    <p class="mb-1">UTC Offset: <span id="city2Offset"></span></p>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <p class="mb-1">Current Date:</p>
+                                    <p id="city2Date" class="mb-1"></p>
+                                    <p class="current-time" id="city2Time"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="city2Error" class="city-info error d-none">
+                            <p class="mb-0">City not found. Please try another city name.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="timeDifference" class="time-difference d-none">
+                <p class="mb-0">Time Difference: <span id="timeDifferenceValue"></span> hours</p>
+            </div>
+
+            <div class="timezone-table">
+                <h2 class="h4 mb-3">World Timezone Reference</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Timezone</th>
+                                <th>UTC Offset</th>
+                                <th>Current Time</th>
+                                <th>Major Cities</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timezoneTableBody">
+                            {% for tz in timezone_data %}
+                            <tr>
+                                <td>{{ tz.name }}</td>
+                                <td>{{ tz.offset }}</td>
+                                <td class="current-tz-time" data-offset="{{ tz.offset }}">-</td>
+                                <td>
+                                    <div class="city-list">
+                                        {% for city in tz.cities %}
+                                        {{ city }}{% if not loop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Cache DOM elements
+        const city1Input = document.getElementById('city1');
+        const city2Input = document.getElementById('city2');
+        const getCity1Btn = document.getElementById('getCity1');
+        const getCity2Btn = document.getElementById('getCity2');
+
+        const city1Info = document.getElementById('city1Info');
+        const city2Info = document.getElementById('city2Info');
+        const city1Error = document.getElementById('city1Error');
+        const city2Error = document.getElementById('city2Error');
+
+        const city1Name = document.getElementById('city1Name');
+        const city2Name = document.getElementById('city2Name');
+        const city1Timezone = document.getElementById('city1Timezone');
+        const city2Timezone = document.getElementById('city2Timezone');
+        const city1Offset = document.getElementById('city1Offset');
+        const city2Offset = document.getElementById('city2Offset');
+        const city1DST = document.getElementById('city1DST');
+        const city2DST = document.getElementById('city2DST');
+        const city1Date = document.getElementById('city1Date');
+        const city2Date = document.getElementById('city2Date');
+        const city1Time = document.getElementById('city1Time');
+        const city2Time = document.getElementById('city2Time');
+
+        const timeDifference = document.getElementById('timeDifference');
+        const timeDifferenceValue = document.getElementById('timeDifferenceValue');
+
+        // Timezone data for city lookup (simplified for client-side - actual implementation would use a more comprehensive database)
+        const cityTimezones = {{ cities_data| tojson
+    }};
+
+    // Store city data for comparison
+    let city1Data = null;
+    let city2Data = null;
+
+    // Update all timezone table times
+    function updateTimezoneTableTimes() {
+        const timeElements = document.querySelectorAll('.current-tz-time');
+        const now = new Date();
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+
+        timeElements.forEach(element => {
+            const offset = element.getAttribute('data-offset');
+            const hours = parseInt(offset.split(':')[0]);
+            const minutes = parseInt(offset.split(':')[1] || 0);
+            const tzTime = new Date(utc + (3600000 * hours) + (60000 * minutes));
+            element.textContent = tzTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        });
+    }
+
+    // Update city time function
+    function updateCityTime(cityData, timeElement, dateElement) {
+        if (!cityData) return;
+
+        const now = new Date();
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+
+        // Parse offset
+        const offsetStr = cityData.offset;
+        const offsetSign = offsetStr.charAt(0) === '-' ? -1 : 1;
+        const offsetHours = parseInt(offsetStr.substring(1, 3));
+        const offsetMinutes = parseInt(offsetStr.substring(4, 6));
+
+        const cityTime = new Date(utc + offsetSign * ((offsetHours * 60 + offsetMinutes) * 60000));
+
+        // Update elements
+        timeElement.textContent = cityTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        dateElement.textContent = cityTime.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        // Check for DST (simplistic approach - a real implementation would use a timezone database)
+        const jan = new Date(cityTime.getFullYear(), 0, 1);
+        const jul = new Date(cityTime.getFullYear(), 6, 1);
+        const isDST = cityTime.getTimezoneOffset() < Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset());
+
+        return cityTime;
+    }
+
+    // Calculate and display time difference
+    function updateTimeDifference() {
+        if (city1Data && city2Data) {
+            // Parse offsets
+            const offset1 = parseOffset(city1Data.offset);
+            const offset2 = parseOffset(city2Data.offset);
+
+            // Calculate difference in hours
+            const diffHours = (offset2 - offset1) / 60;
+
+            // Display the difference
+            timeDifferenceValue.textContent = Math.abs(diffHours).toFixed(1);
+            timeDifference.classList.remove('d-none');
+        } else {
+            timeDifference.classList.add('d-none');
+        }
+    }
+
+    // Helper function to parse offset string to minutes
+    function parseOffset(offsetStr) {
+        const offsetSign = offsetStr.charAt(0) === '-' ? -1 : 1;
+        const offsetHours = parseInt(offsetStr.substring(1, 3));
+        const offsetMinutes = parseInt(offsetStr.substring(4, 6));
+        return offsetSign * (offsetHours * 60 + offsetMinutes);
+    }
+
+    // Check if a city is in DST
+    function checkDST(cityName, dstElement) {
+        // This is a simplified approach - real implementation would use a timezone database
+        const now = new Date();
+
+        // Northern Hemisphere general DST rule (March to November)
+        const isDST = now.getMonth() > 2 && now.getMonth() < 10;
+
+        // Show DST badge if applicable
+        if (isDST) {
+            dstElement.classList.remove('d-none');
+        } else {
+            dstElement.classList.add('d-none');
+        }
+    }
+
+    // Lookup city timezone
+    function lookupCity(cityInput, infoElement, errorElement, nameElement, timezoneElement, offsetElement, dstElement, dateElement, timeElement, cityNumber) {
+        const cityName = cityInput.value.trim().toLowerCase();
+
+        if (cityName === '') {
+            errorElement.classList.add('d-none');
+            infoElement.classList.add('d-none');
+            if (cityNumber === 1) {
+                city1Data = null;
+            } else {
+                city2Data = null;
+            }
+            updateTimeDifference();
+            return;
+        }
+
+        const cityData = cityTimezones[cityName];
+
+        if (cityData) {
+            // Store city data
+            if (cityNumber === 1) {
+                city1Data = cityData;
+            } else {
+                city2Data = cityData;
+            }
+
+            // Display info
+            nameElement.textContent = cityData.name;
+            timezoneElement.textContent = cityData.timezone;
+            offsetElement.textContent = cityData.offset;
+
+            // Check DST
+            checkDST(cityName, dstElement);
+
+            // Update time
+            updateCityTime(cityData, timeElement, dateElement);
+
+            // Show info, hide error
+            infoElement.classList.remove('d-none');
+            errorElement.classList.add('d-none');
+
+            // Update time difference if both cities are set
+            updateTimeDifference();
+        } else {
+            // Show error, hide info
+            errorElement.classList.remove('d-none');
+            infoElement.classList.add('d-none');
+
+            if (cityNumber === 1) {
+                city1Data = null;
+            } else {
+                city2Data = null;
+            }
+
+            updateTimeDifference();
+        }
+    }
+
+    // Event listeners
+    getCity1Btn.addEventListener('click', function () {
+        lookupCity(city1Input, city1Info, city1Error, city1Name, city1Timezone, city1Offset, city1DST, city1Date, city1Time, 1);
+    });
+
+    getCity2Btn.addEventListener('click', function () {
+        lookupCity(city2Input, city2Info, city2Error, city2Name, city2Timezone, city2Offset, city2DST, city2Date, city2Time, 2);
+    });
+
+    // Enter key in input fields
+    city1Input.addEventListener('keyup', function (e) {
+        if (e.key === 'Enter') {
+            lookupCity(city1Input, city1Info, city1Error, city1Name, city1Timezone, city1Offset, city1DST, city1Date, city1Time, 1);
+        }
+    });
+
+    city2Input.addEventListener('keyup', function (e) {
+        if (e.key === 'Enter') {
+            lookupCity(city2Input, city2Info, city2Error, city2Name, city2Timezone, city2Offset, city2DST, city2Date, city2Time, 2);
+        }
+    });
+
+    // Update times every second
+    setInterval(function () {
+        if (city1Data) {
+            updateCityTime(city1Data, city1Time, city1Date);
+        }
+        if (city2Data) {
+            updateCityTime(city2Data, city2Time, city2Date);
+        }
+    }, 1000);
+
+    // Update timezone table times
+    updateTimezoneTableTimes();
+    setInterval(updateTimezoneTableTimes, 60000); // Update every minute
+    });
+</script>
+{% endblock %}
