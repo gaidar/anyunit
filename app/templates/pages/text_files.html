@@ -65,6 +65,7 @@ accurate converter.{% endblock %}
         justify-content: space-between;
         gap: 0.5rem;
         margin-top: 1rem;
+        margin-bottom: 5px;
     }
 
     .format-selector {
@@ -118,6 +119,22 @@ accurate converter.{% endblock %}
                     </div>
                 </div>
 
+                <div id="error-message" class="error-message"></div>
+
+                <div class="actions-container">
+                    <button id="convert-btn" class="btn btn-primary">
+                        <i class="bi bi-arrow-left-right"></i> Convert
+                    </button>
+                    <div>
+                        <button id="copy-output-btn" class="btn btn-outline-primary" disabled>
+                            <i class="bi bi-clipboard"></i> Copy Output
+                        </button>
+                        <button id="download-btn" class="btn btn-outline-primary" disabled>
+                            <i class="bi bi-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+
                 <div class="converter-container">
                     <div class="editor-container">
                         <div class="editor-pane">
@@ -130,21 +147,7 @@ accurate converter.{% endblock %}
                         </div>
                     </div>
 
-                    <div id="error-message" class="error-message"></div>
 
-                    <div class="actions-container">
-                        <button id="convert-btn" class="btn btn-primary">
-                            <i class="bi bi-arrow-left-right"></i> Convert
-                        </button>
-                        <div>
-                            <button id="copy-output-btn" class="btn btn-outline-primary" disabled>
-                                <i class="bi bi-clipboard"></i> Copy Output
-                            </button>
-                            <button id="download-btn" class="btn btn-outline-primary" disabled>
-                                <i class="bi bi-download"></i> Download
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
