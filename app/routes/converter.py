@@ -5,7 +5,9 @@ from app.utils.seo import generate_meta_tags
 
 converter_bp = Blueprint('converter', __name__)
 
-def get_related_conversions(category_info, current_from, current_to):
+# Updated get_related_conversions function that correctly handles the category parameter
+
+def get_related_conversions(category_id, category_info, current_from, current_to):
     """Get related conversions for the current conversion"""
     related = []
     seen = set()
@@ -17,7 +19,7 @@ def get_related_conversions(category_info, current_from, current_to):
             if key not in seen and (conv['from'] != current_from or conv['to'] != current_to):
                 related.append({
                     'title': f"{category_info['units'][conv['from']]['name']} to {category_info['units'][conv['to']]['name']}",
-                    'url': f"/{conv['from']}-to-{conv['to']}"
+                    'url': url_for('converter.convert', category=category_id, from_unit=conv['from'], to_unit=conv['to'])
                 })
                 seen.add(key)
     
@@ -33,7 +35,7 @@ def get_related_conversions(category_info, current_from, current_to):
                         if key not in seen:
                             related.append({
                                 'title': f"{unit_info['name']} to {other_info['name']}",
-                                'url': f"/{unit_id}-to-{other_unit}"
+                                'url': url_for('converter.convert', category=category_id, from_unit=unit_id, to_unit=other_unit)
                             })
                             seen.add(key)
             
@@ -45,12 +47,66 @@ def get_related_conversions(category_info, current_from, current_to):
                         if key not in seen:
                             related.append({
                                 'title': f"{other_info['name']} to {unit_info['name']}",
-                                'url': f"/{other_unit}-to-{unit_id}"
+                                'url': url_for('converter.convert', category=category_id, from_unit=other_unit, to_unit=unit_id)
                             })
                             seen.add(key)
     
     # Limit to 6 related conversions
     return related[:6]
+
+# Update in the convert function where related_conversions is called:
+
+@converter_bp.route('/<category>/<from_unit>-to-<to_unit>')
+def convert(category, from_unit, to_unit):
+    # Normalize the category name
+    normalized_category = normalize_category(category)
+    
+    # If the original category was different from normalized, redirect
+    if category != normalized_category:
+        return redirect(url_for('converter.convert', 
+                              category=normalized_category,
+                              from_unit=from_unit,
+                              to_unit=to_unit))
+    
+    unit_manager = UnitManager()
+    category_info = unit_manager.get_category(normalized_category)
+    
+    if not category_info or from_unit not in category_info['units'] or to_unit not in category_info['units']:
+        abort(404)
+    
+    unit_info = {
+        'from': category_info['units'][from_unit],
+        'to': category_info['units'][to_unit]
+    }
+    
+    # Generate common values table
+    common_values = generate_conversion_table(unit_manager, normalized_category, from_unit, to_unit)
+    
+    # Get conversion formula if applicable
+    formula = None
+    if 'formulas' in category_info:
+        formula_key = f"{from_unit}_to_{to_unit}"
+        formula = category_info['formulas'].get(formula_key)
+    
+    # Get related conversions - Note the category is explicitly passed here
+    related_conversions = get_related_conversions(normalized_category, category_info, from_unit, to_unit)
+    
+    meta_tags = generate_meta_tags(
+        category=normalized_category, 
+        from_unit=from_unit, 
+        to_unit=to_unit
+    )
+    
+    return render_template('pages/convert.html',
+                         category=normalized_category,
+                         from_unit=from_unit,
+                         to_unit=to_unit,
+                         unit_info=unit_info,
+                         common_values=common_values,
+                         formula=formula,
+                         related_conversions=related_conversions,
+                         meta_tags=meta_tags)
+
 
 def format_number(value):
     """Format number for display"""
@@ -141,56 +197,6 @@ def category(category):
                          detailed_tables=detailed_tables,
                          meta_tags=meta_tags)
 
-@converter_bp.route('/<category>/<from_unit>-to-<to_unit>')
-def convert(category, from_unit, to_unit):
-    # Normalize the category name
-    normalized_category = normalize_category(category)
-    
-    # If the original category was different from normalized, redirect
-    if category != normalized_category:
-        return redirect(url_for('converter.convert', 
-                              category=normalized_category,
-                              from_unit=from_unit,
-                              to_unit=to_unit))
-    
-    unit_manager = UnitManager()
-    category_info = unit_manager.get_category(normalized_category)
-    
-    if not category_info or from_unit not in category_info['units'] or to_unit not in category_info['units']:
-        abort(404)
-    
-    unit_info = {
-        'from': category_info['units'][from_unit],
-        'to': category_info['units'][to_unit]
-    }
-    
-    # Generate common values table
-    common_values = generate_conversion_table(unit_manager, normalized_category, from_unit, to_unit)
-    
-    # Get conversion formula if applicable
-    formula = None
-    if 'formulas' in category_info:
-        formula_key = f"{from_unit}_to_{to_unit}"
-        formula = category_info['formulas'].get(formula_key)
-    
-    # Get related conversions
-    related_conversions = get_related_conversions(category_info, from_unit, to_unit)
-    
-    meta_tags = generate_meta_tags(
-        category=normalized_category, 
-        from_unit=from_unit, 
-        to_unit=to_unit
-    )
-    
-    return render_template('pages/convert.html',
-                         category=normalized_category,
-                         from_unit=from_unit,
-                         to_unit=to_unit,
-                         unit_info=unit_info,
-                         common_values=common_values,
-                         formula=formula,
-                         related_conversions=related_conversions,
-                         meta_tags=meta_tags)
 
 @converter_bp.route('/api/convert', methods=['POST'])
 def api_convert():
