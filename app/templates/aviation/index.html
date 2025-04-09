@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+
+{% block title %}Aviation Calculators{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h1 class="mb-4">Aviation Calculators</h1>
+
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs mb-4" id="aviationTabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="fuel-tab" data-bs-toggle="tab" href="#fuel" role="tab">Fuel Calculator</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="density-tab" data-bs-toggle="tab" href="#density" role="tab">Density Altitude</a>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="aviationTabContent">
+        <!-- Fuel Calculator -->
+        <div class="tab-pane fade show active" id="fuel" role="tabpanel">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Fuel Requirements Calculator</h5>
+                    <form id="fuelForm" class="mt-3">
+                        <div class="mb-3">
+                            <label for="distance" class="form-label">Distance (NM)</label>
+                            <input type="number" class="form-control" id="distance" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="indicatedAirspeed" class="form-label">Indicated Airspeed (kts)</label>
+                            <input type="number" class="form-control" id="indicatedAirspeed" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fuelConsumption" class="form-label">Fuel Consumption (gal/hr)</label>
+                            <input type="number" class="form-control" id="fuelConsumption" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="windSpeed" class="form-label">Wind Speed (kts)</label>
+                            <input type="number" class="form-control" id="windSpeed" value="0">
+                        </div>
+                        <div class="mb-3">
+                            <label for="windDirection" class="form-label">Wind Direction (degrees)</label>
+                            <input type="number" class="form-control" id="windDirection" value="0" min="0" max="360">
+                        </div>
+                        <div class="mb-3">
+                            <label for="heading" class="form-label">Aircraft Heading (degrees)</label>
+                            <input type="number" class="form-control" id="heading" value="0" min="0" max="360">
+                        </div>
+                        <div class="mb-3">
+                            <label for="reserveTime" class="form-label">Reserve Time (min)</label>
+                            <input type="number" class="form-control" id="reserveTime" value="45">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                    </form>
+                    <div id="fuelResult" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wind Calculator -->
+        <div class="tab-pane fade" id="ground-speed" role="tabpanel">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Ground Speed Calculator</h5>
+                    <form id="windForm" class="mt-3">
+                        <div class="mb-3">
+                            <label for="indicatedAirspeed" class="form-label">Indicated Airspeed (kts)</label>
+                            <input type="number" class="form-control" id="indicatedAirspeed" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="windSpeed" class="form-label">Wind Speed (kts)</label>
+                            <input type="number" class="form-control" id="windSpeed" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="windDirection" class="form-label">Wind Direction (degrees)</label>
+                            <input type="number" class="form-control" id="windDirection" required min="0" max="360">
+                        </div>
+                        <div class="mb-3">
+                            <label for="heading" class="form-label">Aircraft Heading (degrees)</label>
+                            <input type="number" class="form-control" id="heading" required min="0" max="360">
+                        </div>
+                        <div class="mb-3">
+                            <label for="densityTemperature" class="form-label">Temperature (°C)</label>
+                            <input type="number" class="form-control" id="densityTemperature" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="windPressureAltitude" class="form-label">Pressure Altitude (ft)</label>
+                            <input type="number" class="form-control" id="windPressureAltitude" value="0">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                    </form>
+                    <div id="windResult" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Density Altitude Calculator -->
+        <div class="tab-pane fade" id="density" role="tabpanel">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Density Altitude Calculator</h5>
+                    <form id="densityForm" class="mt-3">
+                        <div class="mb-3">
+                            <label for="densityPressureAltitude" class="form-label">Pressure Altitude (ft)</label>
+                            <input type="number" class="form-control" id="densityPressureAltitude" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="densityTemperature" class="form-label">Temperature (°C)</label>
+                            <input type="number" class="form-control" id="densityTemperature" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                    </form>
+                    <div id="densityResult" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.getElementById('fuelForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = {
+            distance: document.getElementById('distance').value,
+            indicatedAirspeed: document.getElementById('indicatedAirspeed').value,
+            fuelConsumption: document.getElementById('fuelConsumption').value,
+            windSpeed: document.getElementById('windSpeed').value,
+            windDirection: document.getElementById('windDirection').value,
+            heading: document.getElementById('heading').value,
+            reserveTime: document.getElementById('reserveTime').value
+        };
+
+        try {
+            const response = await fetch('/aviation/api/aviation/fuel-calc', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            if (response.ok) {
+                document.getElementById('fuelResult').innerHTML = `
+                <div class="alert alert-success">
+                    <p>Ground Speed: ${result.ground_speed} knots</p>
+                    <p>Flight Time: ${result.flight_time} minutes</p>
+                    <p>Total Fuel Required: ${result.fuel_required} gallons</p>
+                    <p>Reserve Fuel: ${result.reserve_fuel} gallons</p>
+                </div>
+            `;
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (error) {
+            document.getElementById('fuelResult').innerHTML = `
+            <div class="alert alert-danger">${error.message}</div>
+        `;
+        }
+    });
+
+    document.getElementById('windForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = {
+            indicatedAirspeed: document.getElementById('indicatedAirspeed').value,
+            windSpeed: document.getElementById('windSpeed').value,
+            windDirection: document.getElementById('windDirection').value,
+            heading: document.getElementById('heading').value,
+            temperature: document.getElementById('densityTemperature').value,
+            pressureAltitude: document.getElementById('windPressureAltitude').value
+        };
+
+        try {
+            const response = await fetch('/aviation/api/aviation/ground-speed', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            if (response.ok) {
+                document.getElementById('windResult').innerHTML = `
+                <div class="alert alert-success">
+                    <p>Ground Speed: ${result.ground_speed} knots</p>
+                    <p>Density Altitude: ${result.density_altitude} feet</p>
+                </div>
+            `;
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (error) {
+            document.getElementById('windResult').innerHTML = `
+            <div class="alert alert-danger">${error.message}</div>
+        `;
+        }
+    });
+
+    document.getElementById('densityForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = {
+            pressureAltitude: document.getElementById('densityPressureAltitude').value,
+            temperature: document.getElementById('densityTemperature').value
+        };
+
+        try {
+            const response = await fetch('/aviation/api/aviation/density-altitude', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            if (response.ok) {
+                document.getElementById('densityResult').innerHTML = `
+                <div class="alert alert-success">
+                    <p>Density Altitude: ${result.density_altitude} feet</p>
+                </div>
+            `;
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (error) {
+            document.getElementById('densityResult').innerHTML = `
+            <div class="alert alert-danger">${error.message}</div>
+        `;
+        }
+    });
+</script>
+{% endblock %}
