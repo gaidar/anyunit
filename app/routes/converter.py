@@ -94,7 +94,8 @@ def convert(category, from_unit, to_unit):
     meta_tags = generate_meta_tags(
         category=normalized_category, 
         from_unit=from_unit, 
-        to_unit=to_unit
+        to_unit=to_unit,
+        base_url=request.url_root
     )
     
     return render_template('pages/convert.html',
@@ -187,7 +188,7 @@ def category(category):
     if normalized_category in ['length', 'temperature', 'weight', 'volume', 'speed', 'pressure', 'energy', 'power']:
         detailed_tables = unit_manager.get_detailed_conversion_tables(normalized_category)
     
-    meta_tags = generate_meta_tags(category=normalized_category)
+    meta_tags = generate_meta_tags(category=normalized_category, base_url=request.url_root)
     
     return render_template('pages/category.html',
                          category=normalized_category,

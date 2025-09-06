@@ -6,13 +6,15 @@ import os
 import tempfile
 from docx import Document
 import html2docx
+from app.utils.seo import generate_meta_tags
 
 markdown_bp = Blueprint('markdown', __name__)
 
 @markdown_bp.route('/')
 def index():
     """Render the markdown converter page"""
-    return render_template('pages/markdown.html')
+    meta_tags = generate_meta_tags(base_url=request.url_root)
+    return render_template('pages/markdown.html', meta_tags=meta_tags)
 
 @markdown_bp.route('/convert', methods=['POST'])
 def convert():

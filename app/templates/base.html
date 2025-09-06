@@ -8,6 +8,34 @@
     <title>{% block title %}AnyUnit - Universal Unit Converter{% endblock %}</title>
     <meta name="description"
         content="{% block meta_description %}Convert between any units of measurement instantly. Free, fast, and accurate unit converter.{% endblock %}">
+    {% block robots %}<meta name="robots" content="index,follow">{% endblock %}
+
+    {# Canonical #}
+    {% if meta_tags and meta_tags.canonical %}
+    <link rel="canonical" href="{{ request.url_root.rstrip('/') ~ meta_tags.canonical }}">
+    {% else %}
+    <link rel="canonical" href="{{ request.url }}">
+    {% endif %}
+
+    {# Open Graph #}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AnyUnit">
+    <meta property="og:title" content="{{ (meta_tags.title if meta_tags else 'AnyUnit - Universal Unit Converter') }}">
+    <meta property="og:description" content="{{ (meta_tags.description if meta_tags else 'Convert between any units of measurement instantly. Free, fast, and accurate unit converter.') }}">
+    <meta property="og:url" content="{{ request.url_root.rstrip('/') ~ (meta_tags.canonical if meta_tags and meta_tags.canonical else request.path) }}">
+    <meta property="og:image" content="{{ url_for('static', filename='img/android-chrome-512x512.png', _external=True) }}">
+
+    {# Twitter Cards #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@anyunit_app">
+    <meta name="twitter:title" content="{{ (meta_tags.title if meta_tags else 'AnyUnit - Universal Unit Converter') }}">
+    <meta name="twitter:description" content="{{ (meta_tags.description if meta_tags else 'Convert between any units of measurement instantly. Free, fast, and accurate unit converter.') }}">
+    <meta name="twitter:image" content="{{ url_for('static', filename='img/android-chrome-512x512.png', _external=True) }}">
+
+    {# JSON-LD Structured Data #}
+    {% if meta_tags and meta_tags.json_ld %}
+    <script type="application/ld+json">{{ meta_tags.json_ld | safe }}</script>
+    {% endif %}
 
     <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
@@ -46,10 +74,10 @@
                         <a class="nav-link" href="{{ url_for('markdown.index') }}">Markdown</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('timezone.index') }}">Timezone</a> <!-- Add this line -->
+                        <a class="nav-link" href="{{ url_for('timezone.index') }}">Timezone</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('text_files.index') }}">Text Files</a> <!-- Add this line -->
+                        <a class="nav-link" href="{{ url_for('text_files.index') }}">Text Files</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('aviation.aviation_calculators') }}">Aviation</a>
@@ -67,7 +95,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start">
-                    <span class="text-muted">© 2025 AnyUnit. All rights reserved.</span>
+                    <span class="text-muted"> 2025 AnyUnit. All rights reserved.</span>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <ul class="list-inline mb-0">

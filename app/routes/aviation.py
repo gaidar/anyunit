@@ -5,12 +5,14 @@ from app.utils.aviation_calculations import (
     calculate_density_altitude,
     calculate_crosswind
 )
+from app.utils.seo import generate_meta_tags
 
 aviation = Blueprint('aviation', __name__)
 
 @aviation.route('/')
 def aviation_calculators():
-    return render_template('aviation/index.html')
+    meta_tags = generate_meta_tags(base_url=request.url_root)
+    return render_template('aviation/index.html', meta_tags=meta_tags)
 
 @aviation.route('/api/aviation/fuel-calc', methods=['POST'])
 def fuel_calculator():

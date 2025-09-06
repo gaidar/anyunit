@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, current_app
+from flask import Blueprint, render_template, current_app, request
 import json
 import os
+from app.utils.seo import generate_meta_tags
 
 timezone_bp = Blueprint('timezone', __name__)
 
@@ -19,7 +20,9 @@ def load_timezone_data():
 def index():
     
     timezone_data = load_timezone_data()
+    meta_tags = generate_meta_tags(base_url=request.url_root)
     
     return render_template('pages/timezone.html', 
                           timezone_data=timezone_data['timezones'],
-                          cities_data=timezone_data['cities_data'])
+                          cities_data=timezone_data['cities_data'],
+                          meta_tags=meta_tags)

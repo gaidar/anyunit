@@ -40,17 +40,17 @@ def calculate_fuel_requirements(
     Returns:
         Dictionary containing fuel requirements, ground speed and flight time
     """
-    # Calculate relative wind angle
-    wind_angle = abs(wind_direction - heading)
-    if wind_angle > 180:
-        wind_angle = 360 - wind_angle
-    wind_angle_rad = math.radians(wind_angle)
-    
-    # Calculate ground speed considering wind
-    ground_speed = max(1, math.sqrt(
-        indicated_airspeed**2 + wind_speed**2 -
-        2 * indicated_airspeed * wind_speed * math.cos(wind_angle_rad)
-    ))  # Ensure ground speed is at least 1 knot to prevent division by zero
+    # Calculate relative wind angle (wind direction is the FROM direction)
+    angle_rad = math.radians((wind_direction - heading) % 360)
+
+    # Approximate TAS with IAS at low altitude (no altitude input here)
+    tas = indicated_airspeed
+
+    # Headwind component (positive = headwind, negative = tailwind)
+    headwind = wind_speed * math.cos(angle_rad)
+
+    # Ground speed along track
+    ground_speed = max(1.0, tas - headwind)  # ensure not below 1 kt
     
     # Calculate flight time in hours
     flight_time = distance / ground_speed
@@ -97,32 +97,29 @@ def calculate_ground_speed(
     Returns:
         Dictionary containing ground speed and density altitude
     """
-    # Calculate density altitude
+    # Calculate density altitude (rule of thumb)
     standard_temp = 15 - (pressure_altitude / 1000) * 2
     temp_difference = temperature - standard_temp
     density_alt = pressure_altitude + (120 * temp_difference)
     
-    # Calculate relative wind angle
-    wind_angle = abs(wind_direction - heading)
-    if wind_angle > 180:
-        wind_angle = 360 - wind_angle
-    wind_angle_rad = math.radians(wind_angle)
-    
-    # Calculate ground speed
-    ground_speed = max(1, math.sqrt(
-        indicated_airspeed**2 + wind_speed**2 -
-        2 * indicated_airspeed * wind_speed * math.cos(wind_angle_rad)
-    ))  # Ensure ground speed is at least 1 knot to prevent division by zero
-    
-    # Calculate density factor (ensure it never goes below 0.1)
-    density_factor = max(0.1, 1 - (density_alt / 145442))  # Standard atmosphere model
-    
-    # Adjust ground speed for density altitude
-    adjusted_ground_speed = ground_speed * density_factor
+    # Approximate TAS from IAS: ~2% per 1000 ft
+    tas = indicated_airspeed * (1 + 0.02 * (pressure_altitude / 1000.0))
+
+    # Relative wind angle (wind is FROM direction)
+    angle_rad = math.radians((wind_direction - heading) % 360)
+
+    # Components
+    headwind = wind_speed * math.cos(angle_rad)   # +ve headwind, -ve tailwind
+    crosswind = wind_speed * math.sin(angle_rad)
+
+    # Ground speed along track
+    ground_speed = max(1.0, tas - headwind)
     
     return {
-        'ground_speed': round(adjusted_ground_speed, 2),
-        'density_altitude': round(density_alt, 2)
+        'ground_speed': round(ground_speed, 2),
+        'density_altitude': round(density_alt, 2),
+        'headwind_component': round(headwind, 2),
+        'crosswind_component': round(crosswind, 2)
     }
 
 def calculate_density_altitude(

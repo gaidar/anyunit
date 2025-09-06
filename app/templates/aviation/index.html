@@ -14,6 +14,9 @@
         <li class="nav-item">
             <a class="nav-link" id="density-tab" data-bs-toggle="tab" href="#density" role="tab">Density Altitude</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" id="ground-speed-tab" data-bs-toggle="tab" href="#ground-speed" role="tab">Ground Speed</a>
+        </li>
     </ul>
 
     <!-- Tab Content -->
@@ -25,32 +28,32 @@
                     <h5 class="card-title">Fuel Requirements Calculator</h5>
                     <form id="fuelForm" class="mt-3">
                         <div class="mb-3">
-                            <label for="distance" class="form-label">Distance (NM)</label>
-                            <input type="number" class="form-control" id="distance" required>
+                            <label for="fuelDistance" class="form-label">Distance (NM)</label>
+                            <input type="number" class="form-control" id="fuelDistance" required>
                         </div>
                         <div class="mb-3">
-                            <label for="indicatedAirspeed" class="form-label">Indicated Airspeed (kts)</label>
-                            <input type="number" class="form-control" id="indicatedAirspeed" required>
+                            <label for="fuelIAS" class="form-label">Indicated Airspeed (kts)</label>
+                            <input type="number" class="form-control" id="fuelIAS" required>
                         </div>
                         <div class="mb-3">
                             <label for="fuelConsumption" class="form-label">Fuel Consumption (gal/hr)</label>
                             <input type="number" class="form-control" id="fuelConsumption" required>
                         </div>
                         <div class="mb-3">
-                            <label for="windSpeed" class="form-label">Wind Speed (kts)</label>
-                            <input type="number" class="form-control" id="windSpeed" value="0">
+                            <label for="fuelWindSpeed" class="form-label">Wind Speed (kts)</label>
+                            <input type="number" class="form-control" id="fuelWindSpeed" value="0">
                         </div>
                         <div class="mb-3">
-                            <label for="windDirection" class="form-label">Wind Direction (degrees)</label>
-                            <input type="number" class="form-control" id="windDirection" value="0" min="0" max="360">
+                            <label for="fuelWindDirection" class="form-label">Wind Direction (degrees)</label>
+                            <input type="number" class="form-control" id="fuelWindDirection" value="0" min="0" max="360">
                         </div>
                         <div class="mb-3">
-                            <label for="heading" class="form-label">Aircraft Heading (degrees)</label>
-                            <input type="number" class="form-control" id="heading" value="0" min="0" max="360">
+                            <label for="fuelHeading" class="form-label">Aircraft Heading (degrees)</label>
+                            <input type="number" class="form-control" id="fuelHeading" value="0" min="0" max="360">
                         </div>
                         <div class="mb-3">
-                            <label for="reserveTime" class="form-label">Reserve Time (min)</label>
-                            <input type="number" class="form-control" id="reserveTime" value="45">
+                            <label for="fuelReserveTime" class="form-label">Reserve Time (min)</label>
+                            <input type="number" class="form-control" id="fuelReserveTime" value="45">
                         </div>
                         <button type="submit" class="btn btn-primary">Calculate</button>
                     </form>
@@ -59,35 +62,35 @@
             </div>
         </div>
 
-        <!-- Wind Calculator -->
+        <!-- Ground Speed Calculator -->
         <div class="tab-pane fade" id="ground-speed" role="tabpanel">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Ground Speed Calculator</h5>
                     <form id="windForm" class="mt-3">
                         <div class="mb-3">
-                            <label for="indicatedAirspeed" class="form-label">Indicated Airspeed (kts)</label>
-                            <input type="number" class="form-control" id="indicatedAirspeed" required>
+                            <label for="gsIAS" class="form-label">Indicated Airspeed (kts)</label>
+                            <input type="number" class="form-control" id="gsIAS" required>
                         </div>
                         <div class="mb-3">
-                            <label for="windSpeed" class="form-label">Wind Speed (kts)</label>
-                            <input type="number" class="form-control" id="windSpeed" required>
+                            <label for="gsWindSpeed" class="form-label">Wind Speed (kts)</label>
+                            <input type="number" class="form-control" id="gsWindSpeed" required>
                         </div>
                         <div class="mb-3">
-                            <label for="windDirection" class="form-label">Wind Direction (degrees)</label>
-                            <input type="number" class="form-control" id="windDirection" required min="0" max="360">
+                            <label for="gsWindDirection" class="form-label">Wind Direction (degrees)</label>
+                            <input type="number" class="form-control" id="gsWindDirection" required min="0" max="360">
                         </div>
                         <div class="mb-3">
-                            <label for="heading" class="form-label">Aircraft Heading (degrees)</label>
-                            <input type="number" class="form-control" id="heading" required min="0" max="360">
+                            <label for="gsHeading" class="form-label">Aircraft Heading (degrees)</label>
+                            <input type="number" class="form-control" id="gsHeading" required min="0" max="360">
                         </div>
                         <div class="mb-3">
-                            <label for="densityTemperature" class="form-label">Temperature (°C)</label>
-                            <input type="number" class="form-control" id="densityTemperature" required>
+                            <label for="gsTemperature" class="form-label">Temperature (°C)</label>
+                            <input type="number" class="form-control" id="gsTemperature" required>
                         </div>
                         <div class="mb-3">
-                            <label for="windPressureAltitude" class="form-label">Pressure Altitude (ft)</label>
-                            <input type="number" class="form-control" id="windPressureAltitude" value="0">
+                            <label for="gsPressureAltitude" class="form-label">Pressure Altitude (ft)</label>
+                            <input type="number" class="form-control" id="gsPressureAltitude" value="0">
                         </div>
                         <button type="submit" class="btn btn-primary">Calculate</button>
                     </form>
@@ -103,12 +106,12 @@
                     <h5 class="card-title">Density Altitude Calculator</h5>
                     <form id="densityForm" class="mt-3">
                         <div class="mb-3">
-                            <label for="densityPressureAltitude" class="form-label">Pressure Altitude (ft)</label>
-                            <input type="number" class="form-control" id="densityPressureAltitude" required>
+                            <label for="daPressureAltitude" class="form-label">Pressure Altitude (ft)</label>
+                            <input type="number" class="form-control" id="daPressureAltitude" required>
                         </div>
                         <div class="mb-3">
-                            <label for="densityTemperature" class="form-label">Temperature (°C)</label>
-                            <input type="number" class="form-control" id="densityTemperature" required>
+                            <label for="daTemperature" class="form-label">Temperature (°C)</label>
+                            <input type="number" class="form-control" id="daTemperature" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Calculate</button>
                     </form>
@@ -125,13 +128,13 @@
     document.getElementById('fuelForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const data = {
-            distance: document.getElementById('distance').value,
-            indicatedAirspeed: document.getElementById('indicatedAirspeed').value,
+            distance: document.getElementById('fuelDistance').value,
+            indicatedAirspeed: document.getElementById('fuelIAS').value,
             fuelConsumption: document.getElementById('fuelConsumption').value,
-            windSpeed: document.getElementById('windSpeed').value,
-            windDirection: document.getElementById('windDirection').value,
-            heading: document.getElementById('heading').value,
-            reserveTime: document.getElementById('reserveTime').value
+            windSpeed: document.getElementById('fuelWindSpeed').value,
+            windDirection: document.getElementById('fuelWindDirection').value,
+            heading: document.getElementById('fuelHeading').value,
+            reserveTime: document.getElementById('fuelReserveTime').value
         };
 
         try {
@@ -163,12 +166,12 @@
     document.getElementById('windForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const data = {
-            indicatedAirspeed: document.getElementById('indicatedAirspeed').value,
-            windSpeed: document.getElementById('windSpeed').value,
-            windDirection: document.getElementById('windDirection').value,
-            heading: document.getElementById('heading').value,
-            temperature: document.getElementById('densityTemperature').value,
-            pressureAltitude: document.getElementById('windPressureAltitude').value
+            indicatedAirspeed: document.getElementById('gsIAS').value,
+            windSpeed: document.getElementById('gsWindSpeed').value,
+            windDirection: document.getElementById('gsWindDirection').value,
+            heading: document.getElementById('gsHeading').value,
+            temperature: document.getElementById('gsTemperature').value,
+            pressureAltitude: document.getElementById('gsPressureAltitude').value
         };
 
         try {
@@ -183,6 +186,8 @@
                 <div class="alert alert-success">
                     <p>Ground Speed: ${result.ground_speed} knots</p>
                     <p>Density Altitude: ${result.density_altitude} feet</p>
+                    ${result.headwind_component !== undefined ? `<p>Headwind Component: ${result.headwind_component} kts</p>` : ''}
+                    ${result.crosswind_component !== undefined ? `<p>Crosswind Component: ${result.crosswind_component} kts</p>` : ''}
                 </div>
             `;
             } else {
@@ -198,8 +203,8 @@
     document.getElementById('densityForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const data = {
-            pressureAltitude: document.getElementById('densityPressureAltitude').value,
-            temperature: document.getElementById('densityTemperature').value
+            pressureAltitude: document.getElementById('daPressureAltitude').value,
+            temperature: document.getElementById('daTemperature').value
         };
 
         try {
